@@ -1,0 +1,86 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- 배경 -->
+  <rect width="800" height="600" fill="#f8f9fa"/>
+  
+  <!-- 제목 -->
+  <text x="400" y="30" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#2c3e50">JavaScript와 Interpreter</text>
+  
+  <!-- JavaScript 코드 섹션 -->
+  <rect x="50" y="60" width="300" height="180" fill="#fff" stroke="#3498db" stroke-width="2" rx="10"/>
+  <text x="200" y="85" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#3498db">JavaScript 코드</text>
+  
+  <!-- 코드 예시 -->
+  <rect x="70" y="100" width="260" height="120" fill="#2c3e50" rx="5"/>
+  <text x="80" y="125" font-family="monospace" font-size="12" fill="#e74c3c">function</text>
+  <text x="140" y="125" font-family="monospace" font-size="12" fill="#f39c12">sayHello</text>
+  <text x="200" y="125" font-family="monospace" font-size="12" fill="#fff">(name) {</text>
+  
+  <text x="90" y="145" font-family="monospace" font-size="12" fill="#e74c3c">return</text>
+  <text x="140" y="145" font-family="monospace" font-size="12" fill="#2ecc71">"안녕하세요, "</text>
+  <text x="230" y="145" font-family="monospace" font-size="12" fill="#fff">+ name;</text>
+  
+  <text x="80" y="165" font-family="monospace" font-size="12" fill="#fff">}</text>
+  
+  <text x="80" y="190" font-family="monospace" font-size="12" fill="#f39c12">sayHello</text>
+  <text x="140" y="190" font-family="monospace" font-size="12" fill="#fff">(</text>
+  <text x="150" y="190" font-family="monospace" font-size="12" fill="#2ecc71">"철수"</text>
+  <text x="180" y="190" font-family="monospace" font-size="12" fill="#fff">);</text>
+  
+  <!-- 화살표 1 -->
+  <path d="M 350 150 L 430 150" stroke="#e74c3c" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="390" y="140" font-family="Arial, sans-serif" font-size="12" fill="#e74c3c">읽기</text>
+  
+  <!-- Interpreter 섹션 -->
+  <rect x="450" y="60" width="300" height="180" fill="#fff" stroke="#e74c3c" stroke-width="2" rx="10"/>
+  <text x="600" y="85" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#e74c3c">JavaScript Interpreter</text>
+  <text x="600" y="105" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#7f8c8d">(번역기 + 실행기)</text>
+  
+  <!-- Interpreter 내부 과정 -->
+  <rect x="470" y="120" width="260" height="25" fill="#ecf0f1" rx="5"/>
+  <text x="480" y="138" font-family="Arial, sans-serif" font-size="11" fill="#2c3e50">1. 코드 분석 (파싱)</text>
+  
+  <rect x="470" y="150" width="260" height="25" fill="#ecf0f1" rx="5"/>
+  <text x="480" y="168" font-family="Arial, sans-serif" font-size="11" fill="#2c3e50">2. 기계어로 번역</text>
+  
+  <rect x="470" y="180" width="260" height="25" fill="#ecf0f1" rx="5"/>
+  <text x="480" y="198" font-family="Arial, sans-serif" font-size="11" fill="#2c3e50">3. 명령어 실행</text>
+  
+  <rect x="470" y="210" width="260" height="25" fill="#ecf0f1" rx="5"/>
+  <text x="480" y="228" font-family="Arial, sans-serif" font-size="11" fill="#2c3e50">4. 결과 출력</text>
+  
+  <!-- 화살표 2 -->
+  <path d="M 600 240 L 600 300" stroke="#27ae60" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="610" y="275" font-family="Arial, sans-serif" font-size="12" fill="#27ae60">실행</text>
+  
+  <!-- 결과 섹션 -->
+  <rect x="450" y="320" width="300" height="80" fill="#fff" stroke="#27ae60" stroke-width="2" rx="10"/>
+  <text x="600" y="340" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#27ae60">실행 결과</text>
+  
+  <rect x="470" y="350" width="260" height="35" fill="#27ae60" rx="5"/>
+  <text x="600" y="372" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#fff">"안녕하세요, 철수"</text>
+  
+  <!-- 설명 박스들 -->
+  <rect x="50" y="280" width="300" height="150" fill="#fff" stroke="#f39c12" stroke-width="2" rx="10"/>
+  <text x="200" y="300" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#f39c12">JavaScript란?</text>
+  
+  <text x="70" y="325" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">• 웹 브라우저에서 동작하는</text>
+  <text x="70" y="345" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">  프로그래밍 언어</text>
+  <text x="70" y="365" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">• 사람이 이해하기 쉬운 문법</text>
+  <text x="70" y="385" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">• 동적이고 유연한 언어</text>
+  <text x="70" y="405" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">• 객체 지향 + 함수형 지원</text>
+  
+  <rect x="50" y="450" width="700" height="130" fill="#fff" stroke="#9b59b6" stroke-width="2" rx="10"/>
+  <text x="400" y="470" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#9b59b6">Interpreter란?</text>
+  
+  <text x="70" y="495" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">• 고급 언어(JavaScript)를 기계어로 번역하고 바로 실행하는 프로그램</text>
+  <text x="70" y="515" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">• 컴파일러와 달리 한 줄씩 읽어서 바로 실행 (실시간 처리)</text>
+  <text x="70" y="535" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">• 브라우저의 JavaScript 엔진(V8, SpiderMonkey 등)이 interpreter 역할</text>
+  <text x="70" y="555" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">• 장점: 빠른 개발, 디버깅 용이 | 단점: 실행 속도가 컴파일보다 느림</text>
+  
+  <!-- 화살표 마커 정의 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e74c3c"/>
+    </marker>
+  </defs>
+</svg>
