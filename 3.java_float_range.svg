@@ -1,0 +1,98 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- 배경 -->
+  <rect width="800" height="600" fill="#f8f9fa"/>
+  
+  <!-- 제목 -->
+  <text x="400" y="30" text-anchor="middle" font-size="24" font-weight="bold" fill="#2c3e50">
+    자바 실수형 데이터 타입 표현 범위
+  </text>
+  
+  <!-- float 섹션 -->
+  <g>
+    <!-- float 배경 -->
+    <rect x="50" y="70" width="700" height="200" fill="#e3f2fd" stroke="#1976d2" stroke-width="2" rx="10"/>
+    
+    <!-- float 제목 -->
+    <text x="70" y="95" font-size="20" font-weight="bold" fill="#1976d2">float (32비트, 4바이트)</text>
+    
+    <!-- float 비트 구조 -->
+    <g transform="translate(70, 110)">
+      <rect x="0" y="0" width="30" height="25" fill="#ff5722" stroke="white"/>
+      <text x="15" y="17" text-anchor="middle" font-size="10" fill="white" font-weight="bold">S</text>
+      <text x="15" y="40" font-size="8" text-anchor="middle">부호</text>
+      
+      <rect x="30" y="0" width="80" height="25" fill="#ff9800" stroke="white"/>
+      <text x="70" y="17" text-anchor="middle" font-size="10" fill="white" font-weight="bold">지수 (8비트)</text>
+      <text x="70" y="40" font-size="8" text-anchor="middle">Exponent</text>
+      
+      <rect x="110" y="0" width="230" height="25" fill="#4caf50" stroke="white"/>
+      <text x="225" y="17" text-anchor="middle" font-size="10" fill="white" font-weight="bold">가수 (23비트)</text>
+      <text x="225" y="40" font-size="8" text-anchor="middle">Mantissa</text>
+    </g>
+    
+    <!-- float 범위 정보 -->
+    <text x="70" y="180" font-size="14" font-weight="bold" fill="#1976d2">표현 범위:</text>
+    <text x="70" y="200" font-size="12" fill="#333">약 ±3.4 × 10³⁸ (양수: 1.4 × 10⁻⁴⁵ ~ 3.4 × 10³⁸)</text>
+    <text x="70" y="220" font-size="12" fill="#333">정밀도: 소수점 이하 약 6~7자리</text>
+    
+    <!-- float 예시 -->
+    <text x="400" y="180" font-size="14" font-weight="bold" fill="#1976d2">예시:</text>
+    <text x="400" y="200" font-size="12" fill="#d32f2f">float f1 = 3.14159265f;  // 실제로는 3.1415927로 저장</text>
+    <text x="400" y="220" font-size="12" fill="#d32f2f">float f2 = 1234567.8f;   // 실제로는 1234568.0으로 저장</text>
+    <text x="400" y="240" font-size="12" fill="#388e3c">float f3 = 123.45f;      // 정확히 저장 가능</text>
+  </g>
+  
+  <!-- double 섹션 -->
+  <g>
+    <!-- double 배경 -->
+    <rect x="50" y="290" width="700" height="220" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2" rx="10"/>
+    
+    <!-- double 제목 -->
+    <text x="70" y="315" font-size="20" font-weight="bold" fill="#7b1fa2">double (64비트, 8바이트)</text>
+    
+    <!-- double 비트 구조 -->
+    <g transform="translate(70, 330)">
+      <rect x="0" y="0" width="30" height="25" fill="#ff5722" stroke="white"/>
+      <text x="15" y="17" text-anchor="middle" font-size="10" fill="white" font-weight="bold">S</text>
+      <text x="15" y="40" font-size="8" text-anchor="middle">부호</text>
+      
+      <rect x="30" y="0" width="110" height="25" fill="#ff9800" stroke="white"/>
+      <text x="85" y="17" text-anchor="middle" font-size="10" fill="white" font-weight="bold">지수 (11비트)</text>
+      <text x="85" y="40" font-size="8" text-anchor="middle">Exponent</text>
+      
+      <rect x="140" y="0" width="520" height="25" fill="#4caf50" stroke="white"/>
+      <text x="400" y="17" text-anchor="middle" font-size="10" fill="white" font-weight="bold">가수 (52비트)</text>
+      <text x="400" y="40" font-size="8" text-anchor="middle">Mantissa</text>
+    </g>
+    
+    <!-- double 범위 정보 -->
+    <text x="70" y="400" font-size="14" font-weight="bold" fill="#7b1fa2">표현 범위:</text>
+    <text x="70" y="420" font-size="12" fill="#333">약 ±1.8 × 10³⁰⁸ (양수: 4.9 × 10⁻³²⁴ ~ 1.8 × 10³⁰⁸)</text>
+    <text x="70" y="440" font-size="12" fill="#333">정밀도: 소수점 이하 약 15~17자리</text>
+    
+    <!-- double 예시 -->
+    <text x="400" y="400" font-size="14" font-weight="bold" fill="#7b1fa2">예시:</text>
+    <text x="400" y="420" font-size="12" fill="#388e3c">double d1 = 3.141592653589793;  // 정확히 저장</text>
+    <text x="400" y="440" font-size="12" fill="#388e3c">double d2 = 1234567890.123456;  // 정확히 저장</text>
+    <text x="400" y="460" font-size="12" fill="#d32f2f">double d3 = 0.1 + 0.2;         // 0.30000000000000004</text>
+  </g>
+  
+  <!-- 비교 및 주의사항 -->
+  <g>
+    <rect x="50" y="530" width="700" height="60" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="5"/>
+    <text x="70" y="550" font-size="14" font-weight="bold" fill="#e65100">💡 취준생 TIP:</text>
+    <text x="70" y="570" font-size="12" fill="#333">1. 일반적으로 double 사용 권장 (더 높은 정밀도)</text>
+    <text x="400" y="570" font-size="12" fill="#333">2. 실수 연산 시 정확하지 않을 수 있음 (부동소수점 특성)</text>
+  </g>
+  
+  <!-- 범위 비교 시각화 -->
+  <g transform="translate(50, 520)">
+    <!-- float 범위 바 -->
+    <rect x="500" y="-200" width="100" height="8" fill="#1976d2" opacity="0.7"/>
+    <text x="520" y="-185" font-size="10" fill="#1976d2">float 범위</text>
+    
+    <!-- double 범위 바 -->
+    <rect x="500" y="-170" width="200" height="8" fill="#7b1fa2" opacity="0.7"/>
+    <text x="560" y="-155" font-size="10" fill="#7b1fa2">double 범위 (훨씬 큼)</text>
+  </g>
+</svg>
