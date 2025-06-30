@@ -1,0 +1,125 @@
+<svg viewBox="0 0 1100 1000" xmlns="http://www.w3.org/2000/svg">
+  <!-- 배경 -->
+  <rect width="1100" height="1000" fill="#f8f9fa"/>
+  
+  <!-- 제목 -->
+  <text x="550" y="30" text-anchor="middle" font-size="24" font-weight="bold" fill="#2c3e50">
+    12.5f → IEEE 754 float 변환 전체 과정
+  </text>
+  
+  <!-- 1단계: 십진수 → 이진수 -->
+  <g>
+    <rect x="30" y="50" width="1040" height="120" fill="#e3f2fd" stroke="#1976d2" stroke-width="2" rx="10"/>
+    <text x="50" y="75" font-size="18" font-weight="bold" fill="#1976d2">1단계: 12.5 (십진수) → 1100.1 (이진수)</text>
+    
+    <text x="50" y="100" font-size="14" fill="#333">12 → 1100 (정수부분)</text>
+    <text x="250" y="100" font-size="14" fill="#333">0.5 → 0.1 (소수부분)</text>
+    <text x="450" y="100" font-size="16" font-weight="bold" fill="#1976d2">결과: 1100.1</text>
+    
+    <text x="50" y="125" font-size="14" fill="#333">검증: 1×8 + 1×4 + 0×2 + 0×1 + 1×0.5 = 8+4+0+0+0.5 = 12.5 ✓</text>
+    <text x="50" y="145" font-size="12" fill="#666">       2³   2²   2¹   2⁰   2⁻¹</text>
+  </g>
+  
+  <!-- 2단계: 정규화 -->
+  <g>
+    <rect x="30" y="190" width="1040" height="120" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2" rx="10"/>
+    <text x="50" y="215" font-size="18" font-weight="bold" fill="#7b1fa2">2단계: 정규화 (1.xxxxx × 2^n 형태로 만들기)</text>
+    
+    <text x="50" y="240" font-size="14" fill="#333">1100.1 → 1.1001 (소수점을 3자리 왼쪽으로 이동)</text>
+    <text x="50" y="265" font-size="16" font-weight="bold" fill="#7b1fa2">결과: 1.1001 × 2³</text>
+    <text x="50" y="290" font-size="14" fill="#d32f2f">→ 부호: + (0), 지수: 3, 가수: 1001</text>
+  </g>
+  
+  <!-- 3단계: 비트 분해 -->
+  <g>
+    <rect x="30" y="330" width="1040" height="200" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="10"/>
+    <text x="50" y="355" font-size="18" font-weight="bold" fill="#f57c00">3단계: float 32비트 구조로 분해</text>
+    
+    <!-- 화살표들 -->
+    <defs>
+      <marker id="arrow1" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" fill="#ff5722"/>
+      </marker>
+      <marker id="arrow2" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" fill="#ff9800"/>
+      </marker>
+      <marker id="arrow3" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" fill="#4caf50"/>
+      </marker>
+    </defs>
+    
+    <!-- 정규화된 값 표시 -->
+    <text x="50" y="385" font-size="16" fill="#333" font-weight="bold">1.1001 × 2³에서...</text>
+    
+    <!-- 화살표와 설명 -->
+    <g transform="translate(50, 400)">
+      <!-- 부호 -->
+      <rect x="0" y="0" width="120" height="40" fill="#ffcdd2" stroke="#ff5722" stroke-width="2" rx="5"/>
+      <text x="60" y="25" text-anchor="middle" font-size="14" fill="#c62828" font-weight="bold">부호: +</text>
+      <path d="M 60 45 L 60 85" stroke="#ff5722" stroke-width="2" marker-end="url(#arrow1)"/>
+      <text x="60" y="105" text-anchor="middle" font-size="12" fill="#ff5722">0</text>
+      
+      <!-- 지수 -->
+      <rect x="140" y="0" width="200" height="40" fill="#ffe0b2" stroke="#ff9800" stroke-width="2" rx="5"/>
+      <text x="240" y="25" text-anchor="middle" font-size="14" fill="#ef6c00" font-weight="bold">지수: 3</text>
+      <path d="M 240 45 L 240 85" stroke="#ff9800" stroke-width="2" marker-end="url(#arrow2)"/>
+      <text x="240" y="105" text-anchor="middle" font-size="12" fill="#ff9800">3 + 127 = 130</text>
+      
+      <!-- 가수 -->
+      <rect x="360" y="0" width="200" height="40" fill="#c8e6c9" stroke="#4caf50" stroke-width="2" rx="5"/>
+      <text x="460" y="25" text-anchor="middle" font-size="14" fill="#2e7d32" font-weight="bold">가수: 1001</text>
+      <path d="M 460 45 L 460 85" stroke="#4caf50" stroke-width="2" marker-end="url(#arrow3)"/>
+      <text x="460" y="105" text-anchor="middle" font-size="12" fill="#4caf50">1. 제거 후 1001</text>
+    </g>
+  </g>
+  
+  <!-- 4단계: 이진수 변환 -->
+  <g>
+    <rect x="30" y="550" width="1040" height="140" fill="#e8f5e8" stroke="#4caf50" stroke-width="2" rx="10"/>
+    <text x="50" y="575" font-size="18" font-weight="bold" fill="#2e7d32">4단계: 각 부분을 이진수로 변환</text>
+    
+    <text x="50" y="605" font-size="14" fill="#333">• 부호: 0 (양수는 0, 음수는 1)</text>
+    <text x="50" y="630" font-size="14" fill="#333">• 지수: 130 (십진수) = 10000010 (이진수, 8비트)</text>
+    <text x="50" y="655" font-size="14" fill="#333">• 가수: 1001 → 10010000000000000000000 (23비트, 뒤에 0 채움)</text>
+    <text x="50" y="675" font-size="12" fill="#666">         ↑ 정수부 1.은 생략하고 소수부만 저장</text>
+  </g>
+  
+  <!-- 5단계: 최종 32비트 구성 -->
+  <g>
+    <rect x="30" y="710" width="1040" height="180" fill="#ffebee" stroke="#e91e63" stroke-width="2" rx="10"/>
+    <text x="50" y="735" font-size="18" font-weight="bold" fill="#e91e63">5단계: 32비트 float 완성!</text>
+    
+    <!-- 실제 비트 표현 -->
+    <g transform="translate(50, 750)">
+      <!-- 부호 비트 -->
+      <rect x="0" y="0" width="40" height="50" fill="#ff5722" stroke="white" stroke-width="2"/>
+      <text x="20" y="30" text-anchor="middle" font-size="16" fill="white" font-weight="bold">0</text>
+      <text x="20" y="65" font-size="10" text-anchor="middle" fill="#ff5722">부호</text>
+      <text x="20" y="80" font-size="10" text-anchor="middle" fill="#ff5722">(1비트)</text>
+      
+      <!-- 지수 비트 -->
+      <rect x="45" y="0" width="240" height="50" fill="#ff9800" stroke="white" stroke-width="2"/>
+      <text x="165" y="30" text-anchor="middle" font-size="14" fill="white" font-weight="bold">10000010</text>
+      <text x="165" y="65" font-size="10" text-anchor="middle" fill="#ff9800">지수</text>
+      <text x="165" y="80" font-size="10" text-anchor="middle" fill="#ff9800">(8비트)</text>
+      
+      <!-- 가수 비트 -->
+      <rect x="290" y="0" width="460" height="50" fill="#4caf50" stroke="white" stroke-width="2"/>
+      <text x="520" y="30" text-anchor="middle" font-size="12" fill="white" font-weight="bold">10010000000000000000000</text>
+      <text x="520" y="65" font-size="10" text-anchor="middle" fill="#4caf50">가수</text>
+      <text x="520" y="80" font-size="10" text-anchor="middle" fill="#4caf50">(23비트)</text>
+    </g>
+    
+    <text x="50" y="870" font-size="16" font-weight="bold" fill="#e91e63">
+      최종 결과: 0 10000010 10010000000000000000000
+    </text>
+  </g>
+  
+  <!-- 검증 -->
+  <g>
+    <rect x="30" y="910" width="1040" height="80" fill="#f0f4c3" stroke="#827717" stroke-width="2" rx="5"/>
+    <text x="50" y="935" font-size="16" font-weight="bold" fill="#33691e">검증: IEEE 754 공식으로 역계산</text>
+    <text x="50" y="955" font-size="14" fill="#333">값 = (-1)⁰ × (1 + 1001/2²³) × 2^(130-127)</text>
+    <text x="50" y="975" font-size="14" fill="#333">   = 1 × (1 + 9/8388608) × 2³ = 1 × 1.00000107... × 8 ≈ 12.5 ✓</text>
+  </g>
+</svg>
