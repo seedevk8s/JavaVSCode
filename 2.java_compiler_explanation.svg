@@ -1,0 +1,105 @@
+<svg viewBox="0 0 800 700" xmlns="http://www.w3.org/2000/svg">
+  <!-- 배경 -->
+  <rect width="800" height="700" fill="#f8f9fa"/>
+  
+  <!-- 제목 -->
+  <text x="400" y="30" font-family="Arial, sans-serif" font-size="22" font-weight="bold" text-anchor="middle" fill="#2c3e50">Java (하이브리드) vs JavaScript (인터프리터)</text>
+  
+  <!-- Java 섹션 상단 -->
+  <text x="200" y="65" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#e74c3c">Java (하이브리드 방식)</text>
+  <text x="200" y="80" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#7f8c8d">컴파일러 + 인터프리터</text>
+  
+  <!-- Java 코드 섹션 -->
+  <rect x="50" y="95" width="300" height="120" fill="#fff" stroke="#e74c3c" stroke-width="2" rx="10"/>
+  <text x="200" y="115" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#e74c3c">Java 소스코드 (.java)</text>
+  
+  <!-- Java 코드 예시 -->
+  <rect x="70" y="125" width="260" height="70" fill="#2c3e50" rx="5"/>
+  <text x="80" y="145" font-family="monospace" font-size="11" fill="#e74c3c">public class</text>
+  <text x="155" y="145" font-family="monospace" font-size="11" fill="#f39c12">Hello</text>
+  <text x="190" y="145" font-family="monospace" font-size="11" fill="#fff">{</text>
+  
+  <text x="90" y="165" font-family="monospace" font-size="11" fill="#e74c3c">public static void</text>
+  <text x="200" y="165" font-family="monospace" font-size="11" fill="#f39c12">main</text>
+  <text x="230" y="165" font-family="monospace" font-size="11" fill="#fff">() {</text>
+  
+  <text x="100" y="185" font-family="monospace" font-size="11" fill="#2ecc71">"안녕하세요!"</text>
+  <text x="190" y="185" font-family="monospace" font-size="11" fill="#fff">;</text>
+  
+  <!-- 컴파일러 화살표 -->
+  <path d="M 200 215 L 200 255" stroke="#e74c3c" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="210" y="240" font-family="Arial, sans-serif" font-size="12" fill="#e74c3c">1단계: 컴파일</text>
+  
+  <!-- 컴파일러 섹션 -->
+  <rect x="50" y="270" width="300" height="80" fill="#fff" stroke="#f39c12" stroke-width="2" rx="10"/>
+  <text x="200" y="290" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#f39c12">Java Compiler (javac)</text>
+  <text x="200" y="310" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#7f8c8d">📋 컴파일러 특징: 전체 번역</text>
+  <text x="200" y="330" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#7f8c8d">바이트코드(.class) 생성</text>
+  
+  <!-- 바이트코드 화살표 -->
+  <path d="M 200 350 L 200 390" stroke="#f39c12" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="210" y="375" font-family="Arial, sans-serif" font-size="12" fill="#f39c12">생성</text>
+  
+  <!-- 바이트코드 섹션 -->
+  <rect x="50" y="405" width="300" height="80" fill="#fff" stroke="#9b59b6" stroke-width="2" rx="10"/>
+  <text x="200" y="425" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#9b59b6">바이트코드 (.class)</text>
+  <text x="200" y="445" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#7f8c8d">기계어와 소스코드 중간 형태</text>
+  <text x="200" y="465" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#7f8c8d">플랫폼 독립적 (Write Once, Run Anywhere)</text>
+  
+  <!-- JVM 화살표 -->
+  <path d="M 200 485 L 200 525" stroke="#27ae60" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="210" y="510" font-family="Arial, sans-serif" font-size="12" fill="#27ae60">2단계: 실행</text>
+  
+  <!-- JVM 섹션 -->
+  <rect x="50" y="540" width="300" height="80" fill="#fff" stroke="#27ae60" stroke-width="2" rx="10"/>
+  <text x="200" y="560" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#27ae60">JVM (Java Virtual Machine)</text>
+  <text x="200" y="580" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#7f8c8d">🔄 인터프리터 특징: 실시간 번역</text>
+  <text x="200" y="600" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#7f8c8d">바이트코드 → 기계어 → 실행</text>
+  
+  <!-- JavaScript 섹션 우측 -->
+  <text x="600" y="65" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#3498db">JavaScript (순수 인터프리터)</text>
+  <text x="600" y="80" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#7f8c8d">인터프리터만 사용</text>
+  
+  <!-- JavaScript 코드 섹션 -->
+  <rect x="450" y="95" width="300" height="120" fill="#fff" stroke="#3498db" stroke-width="2" rx="10"/>
+  <text x="600" y="115" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#3498db">JavaScript 코드 (.js)</text>
+  
+  <!-- JavaScript 코드 예시 -->
+  <rect x="470" y="125" width="260" height="70" fill="#2c3e50" rx="5"/>
+  <text x="480" y="145" font-family="monospace" font-size="11" fill="#e74c3c">function</text>
+  <text x="530" y="145" font-family="monospace" font-size="11" fill="#f39c12">sayHello</text>
+  <text x="590" y="145" font-family="monospace" font-size="11" fill="#fff">() {</text>
+  
+  <text x="490" y="165" font-family="monospace" font-size="11" fill="#e74c3c">console.log</text>
+  <text x="560" y="165" font-family="monospace" font-size="11" fill="#fff">(</text>
+  <text x="570" y="165" font-family="monospace" font-size="11" fill="#2ecc71">"안녕하세요!"</text>
+  <text x="660" y="165" font-family="monospace" font-size="11" fill="#fff">);</text>
+  
+  <text x="480" y="185" font-family="monospace" font-size="11" fill="#fff">}</text>
+  
+  <!-- 인터프리터 화살표 (바로 실행) -->
+  <path d="M 600 215 L 600 330" stroke="#3498db" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="610" y="270" font-family="Arial, sans-serif" font-size="12" fill="#3498db">바로 실행</text>
+  <text x="610" y="285" font-family="Arial, sans-serif" font-size="11" fill="#7f8c8d">(컴파일 없이 한줄씩)</text>
+  
+  <!-- JavaScript 엔진 섹션 -->
+  <rect x="450" y="360" width="300" height="120" fill="#fff" stroke="#3498db" stroke-width="2" rx="10"/>
+  <text x="600" y="380" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#3498db">JavaScript 엔진 (Interpreter)</text>
+  <text x="600" y="400" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#7f8c8d">코드를 한 줄씩 읽으면서</text>
+  <text x="600" y="420" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#7f8c8d">바로 기계어로 번역하여 실행</text>
+  <text x="600" y="450" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#27ae60">결과: "안녕하세요!" 출력</text>
+  
+  <!-- 비교 표 -->
+  <rect x="50" y="640" width="700" height="50" fill="#ecf0f1" stroke="#34495e" stroke-width="1" rx="5"/>
+  <text x="400" y="660" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#2c3e50">핵심 차이점</text>
+  
+  <text x="70" y="680" font-family="Arial, sans-serif" font-size="12" fill="#e74c3c">Java: 컴파일 → 바이트코드 → 실행 (2단계)</text>
+  <text x="450" y="680" font-family="Arial, sans-serif" font-size="12" fill="#3498db">JavaScript: 바로 실행 (1단계)</text>
+  
+  <!-- 화살표 마커 정의 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="currentColor"/>
+    </marker>
+  </defs>
+</svg>
