@@ -1,0 +1,168 @@
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <!-- 제목 -->
+  <text x="600" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#333">EmployeeMain1 메모리 다이어그램</text>
+  
+  <!-- 1. 배열 생성 -->
+  <g id="array-creation">
+    <text x="50" y="70" font-size="14" font-weight="bold" fill="#1976d2">1. 배열 생성</text>
+    <rect x="50" y="80" width="200" height="40" fill="#e3f2fd" stroke="#1976d2" stroke-width="2" rx="5"/>
+    <text x="60" y="105" font-size="12" fill="#333">Employee[] employees = new Employee[3]</text>
+    
+    <!-- 스택 -->
+    <rect x="50" y="140" width="120" height="40" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="5"/>
+    <text x="60" y="165" font-size="12" fill="#333">스택: employees → x100</text>
+    
+    <!-- 힙 -->
+    <rect x="200" y="140" width="150" height="40" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2" rx="5"/>
+    <text x="210" y="165" font-size="12" fill="#333">힙: x100 [null, null, null]</text>
+    
+    <!-- 화살표 -->
+    <path d="M 170 160 L 195 160" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+  </g>
+  
+  <!-- 2. createEmployee 첫 번째 호출 -->
+  <g id="first-create">
+    <text x="50" y="230" font-size="14" font-weight="bold" fill="#1976d2">2. createEmployee("김개발", 1001, 4500000, 8.5, true, 'A')</text>
+    
+    <!-- 스택 -->
+    <rect x="50" y="250" width="150" height="60" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="5"/>
+    <text x="60" y="270" font-size="11" fill="#333">스택 (매개변수)</text>
+    <text x="60" y="285" font-size="10" fill="#333">name → x200</text>
+    <text x="60" y="300" font-size="10" fill="#333">기본형 값들 복사</text>
+    
+    <!-- 힙 String -->
+    <rect x="220" y="250" width="100" height="30" fill="#e8f5e8" stroke="#388e3c" stroke-width="2" rx="5"/>
+    <text x="230" y="270" font-size="11" fill="#333">x200: "김개발"</text>
+    
+    <!-- 힙 Employee 객체 -->
+    <rect x="220" y="290" width="120" height="80" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2" rx="5"/>
+    <text x="230" y="310" font-size="11" fill="#333">x201: Employee</text>
+    <text x="230" y="325" font-size="10" fill="#333">name → x200</text>
+    <text x="230" y="340" font-size="10" fill="#333">employeeId = 1001</text>
+    <text x="230" y="355" font-size="10" fill="#333">salary = 4500000</text>
+    
+    <!-- 반환 -->
+    <rect x="360" y="250" width="120" height="30" fill="#fce4ec" stroke="#c2185b" stroke-width="2" rx="5"/>
+    <text x="370" y="270" font-size="11" fill="#333">employees[0] = x201</text>
+    
+    <!-- 화살표들 -->
+    <path d="M 200 275 L 215 275" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <path d="M 340 330 L 355 265" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+  </g>
+  
+  <!-- 3. createEmployee 두 번째 호출 -->
+  <g id="second-create">
+    <text x="50" y="420" font-size="14" font-weight="bold" fill="#1976d2">3. createEmployee("이마케팅", 1002, 4000000, 7.8, true, 'B')</text>
+    
+    <!-- 힙 String -->
+    <rect x="220" y="440" width="110" height="30" fill="#e8f5e8" stroke="#388e3c" stroke-width="2" rx="5"/>
+    <text x="230" y="460" font-size="11" fill="#333">x300: "이마케팅"</text>
+    
+    <!-- 힙 Employee 객체 -->
+    <rect x="220" y="480" width="120" height="80" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2" rx="5"/>
+    <text x="230" y="500" font-size="11" fill="#333">x301: Employee</text>
+    <text x="230" y="515" font-size="10" fill="#333">name → x300</text>
+    <text x="230" y="530" font-size="10" fill="#333">employeeId = 1002</text>
+    <text x="230" y="545" font-size="10" fill="#333">salary = 4000000</text>
+    
+    <!-- 반환 -->
+    <rect x="360" y="440" width="120" height="30" fill="#fce4ec" stroke="#c2185b" stroke-width="2" rx="5"/>
+    <text x="370" y="460" font-size="11" fill="#333">employees[1] = x301</text>
+    
+    <!-- 화살표 -->
+    <path d="M 340 520 L 355 455" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+  </g>
+  
+  <!-- 4. createEmployee 세 번째 호출 -->
+  <g id="third-create">
+    <text x="50" y="610" font-size="14" font-weight="bold" fill="#1976d2">4. createEmployee("박영업", 1003, 3800000, 9.2, false, 'C')</text>
+    
+    <!-- 힙 String -->
+    <rect x="220" y="630" width="100" height="30" fill="#e8f5e8" stroke="#388e3c" stroke-width="2" rx="5"/>
+    <text x="230" y="650" font-size="11" fill="#333">x400: "박영업"</text>
+    
+    <!-- 힙 Employee 객체 -->
+    <rect x="220" y="670" width="120" height="80" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2" rx="5"/>
+    <text x="230" y="690" font-size="11" fill="#333">x401: Employee</text>
+    <text x="230" y="705" font-size="10" fill="#333">name → x400</text>
+    <text x="230" y="720" font-size="10" fill="#333">employeeId = 1003</text>
+    <text x="230" y="735" font-size="10" fill="#333">salary = 3800000</text>
+    
+    <!-- 반환 -->
+    <rect x="360" y="630" width="120" height="30" fill="#fce4ec" stroke="#c2185b" stroke-width="2" rx="5"/>
+    <text x="370" y="650" font-size="11" fill="#333">employees[2] = x401</text>
+    
+    <!-- 화살표 -->
+    <path d="M 340 710 L 355 645" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+  </g>
+  
+  <!-- 5. 최종 배열 상태 -->
+  <g id="final-array">
+    <text x="550" y="70" font-size="14" font-weight="bold" fill="#1976d2">5. 배열 완성 상태</text>
+    
+    <!-- 스택 -->
+    <rect x="550" y="90" width="120" height="40" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="5"/>
+    <text x="560" y="115" font-size="12" fill="#333">employees → x100</text>
+    
+    <!-- 힙 배열 -->
+    <rect x="550" y="150" width="150" height="100" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2" rx="5"/>
+    <text x="560" y="170" font-size="12" fill="#333">x100: Employee[]</text>
+    <text x="560" y="190" font-size="11" fill="#333">[0] → x201</text>
+    <text x="560" y="205" font-size="11" fill="#333">[1] → x301</text>
+    <text x="560" y="220" font-size="11" fill="#333">[2] → x401</text>
+    
+    <!-- 화살표 -->
+    <path d="M 610 130 L 610 145" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+  </g>
+  
+  <!-- 6. getTotalSalary 호출 -->
+  <g id="total-salary">
+    <text x="750" y="70" font-size="14" font-weight="bold" fill="#1976d2">6. getTotalSalary 호출</text>
+    
+    <!-- 스택 -->
+    <rect x="750" y="90" width="140" height="60" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="5"/>
+    <text x="760" y="110" font-size="11" fill="#333">employees → x100</text>
+    <text x="760" y="125" font-size="11" fill="#333">totalSalary = 0</text>
+    <text x="760" y="140" font-size="11" fill="#333">(기본형 지역변수)</text>
+    
+    <!-- 계산 과정 -->
+    <rect x="750" y="170" width="160" height="80" fill="#e8f5e8" stroke="#388e3c" stroke-width="2" rx="5"/>
+    <text x="760" y="190" font-size="11" fill="#333">반복문 실행</text>
+    <text x="760" y="205" font-size="10" fill="#333">4500000 + 4000000</text>
+    <text x="760" y="220" font-size="10" fill="#333">+ 3800000</text>
+    <text x="760" y="235" font-size="10" fill="#333">= 12300000</text>
+    
+    <!-- 반환 -->
+    <rect x="750" y="270" width="140" height="30" fill="#fce4ec" stroke="#c2185b" stroke-width="2" rx="5"/>
+    <text x="760" y="290" font-size="11" fill="#333">return 12300000</text>
+  </g>
+  
+  <!-- 7. getAveragePerformanceScore 호출 -->
+  <g id="avg-score">
+    <text x="950" y="70" font-size="14" font-weight="bold" fill="#1976d2">7. getAverageScore 호출</text>
+    
+    <!-- 스택 -->
+    <rect x="950" y="90" width="140" height="60" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="5"/>
+    <text x="960" y="110" font-size="11" fill="#333">employees → x100</text>
+    <text x="960" y="125" font-size="11" fill="#333">totalScore = 0.0</text>
+    <text x="960" y="140" font-size="11" fill="#333">(기본형 지역변수)</text>
+    
+    <!-- 계산 과정 -->
+    <rect x="950" y="170" width="160" height="80" fill="#e8f5e8" stroke="#388e3c" stroke-width="2" rx="5"/>
+    <text x="960" y="190" font-size="11" fill="#333">반복문 실행</text>
+    <text x="960" y="205" font-size="10" fill="#333">8.5 + 7.8 + 9.2</text>
+    <text x="960" y="220" font-size="10" fill="#333">= 25.5</text>
+    <text x="960" y="235" font-size="10" fill="#333">25.5 / 3 = 8.5</text>
+    
+    <!-- 반환 -->
+    <rect x="950" y="270" width="140" height="30" fill="#fce4ec" stroke="#c2185b" stroke-width="2" rx="5"/>
+    <text x="960" y="290" font-size="11" fill="#333">return 8.5</text>
+  </g>
+  
+  <!-- 화살표 마커 정의 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    </marker>
+  </defs>
+</svg>
