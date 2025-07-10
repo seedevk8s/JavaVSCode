@@ -1,0 +1,179 @@
+<svg viewBox="0 0 1200 900" xmlns="http://www.w3.org/2000/svg">
+  <!-- 제목 -->
+  <text x="600" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#333">EmployeeMain2 메모리 다이어그램</text>
+  
+  <!-- 1. Scanner 및 입력 -->
+  <g id="scanner-input">
+    <text x="50" y="70" font-size="14" font-weight="bold" fill="#1976d2">1. Scanner 생성 및 입력</text>
+    
+    <!-- Scanner 생성 -->
+    <rect x="50" y="90" width="180" height="40" fill="#e3f2fd" stroke="#1976d2" stroke-width="2" rx="5"/>
+    <text x="60" y="115" font-size="12" fill="#333">Scanner scanner = new Scanner(System.in)</text>
+    
+    <!-- 스택 -->
+    <rect x="50" y="140" width="120" height="40" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="5"/>
+    <text x="60" y="165" font-size="12" fill="#333">scanner → x100</text>
+    
+    <!-- 힙 Scanner -->
+    <rect x="200" y="140" width="100" height="40" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2" rx="5"/>
+    <text x="210" y="165" font-size="12" fill="#333">x100: Scanner</text>
+    
+    <!-- 사용자 입력 -->
+    <rect x="320" y="140" width="150" height="40" fill="#ffebee" stroke="#d32f2f" stroke-width="2" rx="5"/>
+    <text x="330" y="165" font-size="12" fill="#333">employeeCount = 2 (예시)</text>
+    
+    <!-- 화살표 -->
+    <path d="M 170 160 L 195 160" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+  </g>
+  
+  <!-- 2. 동적 배열 생성 -->
+  <g id="dynamic-array">
+    <text x="50" y="230" font-size="14" font-weight="bold" fill="#1976d2">2. 동적 배열 생성</text>
+    
+    <rect x="50" y="250" width="200" height="40" fill="#e3f2fd" stroke="#1976d2" stroke-width="2" rx="5"/>
+    <text x="60" y="275" font-size="12" fill="#333">Employee[] employees = new Employee[2]</text>
+    
+    <!-- 스택 -->
+    <rect x="50" y="300" width="120" height="40" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="5"/>
+    <text x="60" y="325" font-size="12" fill="#333">employees → x200</text>
+    
+    <!-- 힙 배열 -->
+    <rect x="200" y="300" width="120" height="40" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2" rx="5"/>
+    <text x="210" y="325" font-size="12" fill="#333">x200: [null, null]</text>
+    
+    <!-- 화살표 -->
+    <path d="M 170 320 L 195 320" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+  </g>
+  
+  <!-- 3. 첫 번째 직원 입력 -->
+  <g id="first-employee">
+    <text x="50" y="390" font-size="14" font-weight="bold" fill="#1976d2">3. 첫 번째 직원 입력 및 생성</text>
+    
+    <!-- 사용자 입력 -->
+    <rect x="50" y="410" width="180" height="100" fill="#ffebee" stroke="#d32f2f" stroke-width="2" rx="5"/>
+    <text x="60" y="430" font-size="11" fill="#333">사용자 입력:</text>
+    <text x="60" y="445" font-size="10" fill="#333">name = "김개발"</text>
+    <text x="60" y="460" font-size="10" fill="#333">employeeId = 1001</text>
+    <text x="60" y="475" font-size="10" fill="#333">salary = 4500000</text>
+    <text x="60" y="490" font-size="10" fill="#333">performanceScore = 8.5</text>
+    <text x="60" y="505" font-size="10" fill="#333">isFullTime = true, dept = 'A'</text>
+    
+    <!-- createEmployee 호출 -->
+    <rect x="250" y="410" width="140" height="40" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="5"/>
+    <text x="260" y="435" font-size="11" fill="#333">createEmployee 호출</text>
+    
+    <!-- 힙 String -->
+    <rect x="250" y="460" width="100" height="30" fill="#e8f5e8" stroke="#388e3c" stroke-width="2" rx="5"/>
+    <text x="260" y="480" font-size="11" fill="#333">x300: "김개발"</text>
+    
+    <!-- 힙 Employee 객체 -->
+    <rect x="250" y="500" width="120" height="80" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2" rx="5"/>
+    <text x="260" y="520" font-size="11" fill="#333">x301: Employee</text>
+    <text x="260" y="535" font-size="10" fill="#333">name → x300</text>
+    <text x="260" y="550" font-size="10" fill="#333">employeeId = 1001</text>
+    <text x="260" y="565" font-size="10" fill="#333">salary = 4500000</text>
+    
+    <!-- 배열 업데이트 -->
+    <rect x="400" y="410" width="120" height="30" fill="#fce4ec" stroke="#c2185b" stroke-width="2" rx="5"/>
+    <text x="410" y="430" font-size="11" fill="#333">employees[0] = x301</text>
+    
+    <!-- 화살표들 -->
+    <path d="M 230 450 L 245 430" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <path d="M 370 540 L 395 425" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+  </g>
+  
+  <!-- 4. 두 번째 직원 입력 -->
+  <g id="second-employee">
+    <text x="50" y="620" font-size="14" font-weight="bold" fill="#1976d2">4. 두 번째 직원 입력 및 생성</text>
+    
+    <!-- 사용자 입력 -->
+    <rect x="50" y="640" width="180" height="100" fill="#ffebee" stroke="#d32f2f" stroke-width="2" rx="5"/>
+    <text x="60" y="660" font-size="11" fill="#333">사용자 입력:</text>
+    <text x="60" y="675" font-size="10" fill="#333">name = "이마케팅"</text>
+    <text x="60" y="690" font-size="10" fill="#333">employeeId = 1002</text>
+    <text x="60" y="705" font-size="10" fill="#333">salary = 4000000</text>
+    <text x="60" y="720" font-size="10" fill="#333">performanceScore = 7.8</text>
+    <text x="60" y="735" font-size="10" fill="#333">isFullTime = true, dept = 'B'</text>
+    
+    <!-- 힙 String -->
+    <rect x="250" y="640" width="110" height="30" fill="#e8f5e8" stroke="#388e3c" stroke-width="2" rx="5"/>
+    <text x="260" y="660" font-size="11" fill="#333">x400: "이마케팅"</text>
+    
+    <!-- 힙 Employee 객체 -->
+    <rect x="250" y="680" width="120" height="80" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2" rx="5"/>
+    <text x="260" y="700" font-size="11" fill="#333">x401: Employee</text>
+    <text x="260" y="715" font-size="10" fill="#333">name → x400</text>
+    <text x="260" y="730" font-size="10" fill="#333">employeeId = 1002</text>
+    <text x="260" y="745" font-size="10" fill="#333">salary = 4000000</text>
+    
+    <!-- 배열 업데이트 -->
+    <rect x="400" y="640" width="120" height="30" fill="#fce4ec" stroke="#c2185b" stroke-width="2" rx="5"/>
+    <text x="410" y="660" font-size="11" fill="#333">employees[1] = x401</text>
+    
+    <!-- 화살표 -->
+    <path d="M 370 720 L 395 655" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+  </g>
+  
+  <!-- 5. 최종 배열 상태 -->
+  <g id="final-state">
+    <text x="600" y="70" font-size="14" font-weight="bold" fill="#1976d2">5. 배열 완성 상태</text>
+    
+    <!-- 스택 -->
+    <rect x="600" y="90" width="120" height="40" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="5"/>
+    <text x="610" y="115" font-size="12" fill="#333">employees → x200</text>
+    
+    <!-- 힙 배열 -->
+    <rect x="600" y="150" width="150" height="80" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2" rx="5"/>
+    <text x="610" y="170" font-size="12" fill="#333">x200: Employee[]</text>
+    <text x="610" y="190" font-size="11" fill="#333">[0] → x301 (김개발)</text>
+    <text x="610" y="210" font-size="11" fill="#333">[1] → x401 (이마케팅)</text>
+    
+    <!-- 화살표 -->
+    <path d="M 660 130 L 660 145" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+  </g>
+  
+  <!-- 6. 통계 계산 -->
+  <g id="statistics">
+    <text x="800" y="70" font-size="14" font-weight="bold" fill="#1976d2">6. printStatistics 호출</text>
+    
+    <!-- getTotalSalary -->
+    <rect x="800" y="90" width="160" height="80" fill="#e8f5e8" stroke="#388e3c" stroke-width="2" rx="5"/>
+    <text x="810" y="110" font-size="11" fill="#333">getTotalSalary 호출</text>
+    <text x="810" y="125" font-size="10" fill="#333">totalSalary = 0</text>
+    <text x="810" y="140" font-size="10" fill="#333">4500000 + 4000000</text>
+    <text x="810" y="155" font-size="10" fill="#333">= 8500000</text>
+    
+    <!-- 평균 급여 계산 -->
+    <rect x="800" y="180" width="160" height="60" fill="#e8f5e8" stroke="#388e3c" stroke-width="2" rx="5"/>
+    <text x="810" y="200" font-size="11" fill="#333">평균 급여 계산</text>
+    <text x="810" y="215" font-size="10" fill="#333">8500000 / 2</text>
+    <text x="810" y="230" font-size="10" fill="#333">= 4250000.0</text>
+    
+    <!-- 정규직 비율 -->
+    <rect x="800" y="250" width="160" height="60" fill="#e8f5e8" stroke="#388e3c" stroke-width="2" rx="5"/>
+    <text x="810" y="270" font-size="11" fill="#333">정규직 비율 계산</text>
+    <text x="810" y="285" font-size="10" fill="#333">fullTimeCount = 2</text>
+    <text x="810" y="300" font-size="10" fill="#333">비율 = 100.0%</text>
+  </g>
+  
+  <!-- 7. 리소스 해제 -->
+  <g id="cleanup">
+    <text x="600" y="280" font-size="14" font-weight="bold" fill="#1976d2">7. 리소스 해제</text>
+    
+    <rect x="600" y="300" width="140" height="40" fill="#fce4ec" stroke="#c2185b" stroke-width="2" rx="5"/>
+    <text x="610" y="325" font-size="12" fill="#333">scanner.close()</text>
+    
+    <rect x="600" y="350" width="140" height="40" fill="#ffebee" stroke="#d32f2f" stroke-width="2" rx="5"/>
+    <text x="610" y="375" font-size="12" fill="#333">Scanner 객체 해제</text>
+    
+    <!-- 화살표 -->
+    <path d="M 670 340 L 670 355" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+  </g>
+  
+  <!-- 화살표 마커 정의 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    </marker>
+  </defs>
+</svg>
