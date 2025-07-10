@@ -1,0 +1,46 @@
+graph TD
+    subgraph "1. main 메서드 시작 - Scanner 및 입력 처리"
+        A1["Scanner scanner = new Scanner(System.in)"] --> A2["스택<br/>scanner → x100"]
+        A2 --> A3["힙 메모리<br/>x100: Scanner 객체"]
+        A3 --> A4["사용자 입력<br/>employeeCount = 2 (예시)"]
+    end
+
+    subgraph "2. 동적 배열 생성"
+        B1["Employee[] employees = new Employee[employeeCount]"] --> B2["스택<br/>employees → x200"]
+        B2 --> B3["힙 메모리<br/>x200: [null, null]<br/>Employee 배열 (크기 2)"]
+    end
+
+    subgraph "3. 첫 번째 직원 입력 및 생성"
+        C1["사용자 입력<br/>name = '김개발'<br/>employeeId = 1001<br/>salary = 4500000<br/>performanceScore = 8.5<br/>isFullTime = true<br/>department = 'A'"] --> C2["스택 (입력 단계)<br/>name → x300<br/>employeeId = 1001<br/>salary = 4500000<br/>performanceScore = 8.5<br/>isFullTime = true<br/>department = 'A'"]
+        C2 --> C3["createEmployee 호출<br/>매개변수 전달 (기본형은 값 복사, 참조형은 주소 복사)"]
+        C3 --> C4["힙 메모리<br/>x300: '김개발' (String)<br/>x301: Employee 객체<br/>  - name → x300<br/>  - employeeId = 1001<br/>  - salary = 4500000<br/>  - performanceScore = 8.5<br/>  - isFullTime = true<br/>  - department = 'A'"]
+        C4 --> C5["employees[0] = x301"]
+    end
+
+    subgraph "4. 두 번째 직원 입력 및 생성"
+        D1["사용자 입력<br/>name = '이마케팅'<br/>employeeId = 1002<br/>salary = 4000000<br/>performanceScore = 7.8<br/>isFullTime = true<br/>department = 'B'"] --> D2["createEmployee 호출<br/>매개변수 전달"]
+        D2 --> D3["힙 메모리<br/>x400: '이마케팅' (String)<br/>x401: Employee 객체<br/>  - name → x400<br/>  - employeeId = 1002<br/>  - salary = 4000000<br/>  - performanceScore = 7.8<br/>  - isFullTime = true<br/>  - department = 'B'"]
+        D3 --> D4["employees[1] = x401"]
+    end
+
+    subgraph "5. 배열 완성 상태"
+        E1["스택<br/>employees → x200"] --> E2["힙 메모리<br/>x200: [x301, x401]<br/>Employee 배열<br/><br/>x301: Employee 객체 (김개발)<br/>x401: Employee 객체 (이마케팅)"]
+    end
+
+    subgraph "6. printStatistics 호출 - 통계 계산"
+        F1["getTotalSalary(employees) 호출"] --> F2["스택<br/>employees → x200 (참조 전달)<br/>totalSalary = 0"]
+        F2 --> F3["반복문 실행<br/>totalSalary = 4500000 + 4000000 = 8500000"]
+        F3 --> F4["averageSalary 계산<br/>(double) 8500000 / 2 = 4250000.0"]
+        F4 --> F5["정규직 비율 계산<br/>fullTimeCount = 2<br/>fullTimeRatio = 100.0%"]
+    end
+
+    subgraph "7. 리소스 해제"
+        G1["scanner.close() 호출"] --> G2["Scanner 객체 리소스 해제<br/>x100 Scanner 객체 정리"]
+    end
+
+    style A1 fill:#e1f5fe
+    style B1 fill:#fff3e0
+    style C1 fill:#ffebee
+    style D1 fill:#ffebee
+    style F1 fill:#f3e5f5
+    style G1 fill:#fce4ec
