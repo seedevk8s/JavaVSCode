@@ -1,0 +1,227 @@
+<svg viewBox="0 0 1400 1000" xmlns="http://www.w3.org/2000/svg">
+  <!-- 제목 -->
+  <text x="700" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#333">EmployeeReferenceDemo 메모리 다이어그램</text>
+  
+  <!-- 1. 기본형 변수 생성 -->
+  <g id="primitive-creation">
+    <text x="50" y="70" font-size="14" font-weight="bold" fill="#1976d2">1. 기본형 변수 생성</text>
+    
+    <rect x="50" y="90" width="180" height="40" fill="#e3f2fd" stroke="#1976d2" stroke-width="2" rx="5"/>
+    <text x="60" y="115" font-size="12" fill="#333">int salary1 = 4000000, salary2 = 4000000</text>
+    
+    <!-- 스택 -->
+    <rect x="50" y="140" width="100" height="60" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="5"/>
+    <text x="60" y="160" font-size="11" fill="#333">스택</text>
+    <text x="60" y="175" font-size="10" fill="#333">salary1 = 4000000</text>
+    <text x="60" y="190" font-size="10" fill="#333">salary2 = 4000000</text>
+    
+    <rect x="170" y="140" width="120" height="30" fill="#e8f5e8" stroke="#388e3c" stroke-width="2" rx="5"/>
+    <text x="180" y="160" font-size="11" fill="#333">salary1 == salary2 : true</text>
+  </g>
+  
+  <!-- 2. 기본형 변수 값 변경 -->
+  <g id="primitive-change">
+    <text x="50" y="230" font-size="14" font-weight="bold" fill="#1976d2">2. 기본형 변수 값 변경</text>
+    
+    <rect x="50" y="250" width="120" height="40" fill="#e3f2fd" stroke="#1976d2" stroke-width="2" rx="5"/>
+    <text x="60" y="275" font-size="12" fill="#333">salary1 = 4500000</text>
+    
+    <!-- 스택 변경 후 -->
+    <rect x="50" y="300" width="100" height="60" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="5"/>
+    <text x="60" y="320" font-size="11" fill="#333">스택</text>
+    <text x="60" y="335" font-size="10" fill="#333">salary1 = 4500000</text>
+    <text x="60" y="350" font-size="10" fill="#333">salary2 = 4000000</text>
+    
+    <rect x="170" y="300" width="120" height="30" fill="#ffebee" stroke="#d32f2f" stroke-width="2" rx="5"/>
+    <text x="180" y="320" font-size="11" fill="#333">salary1 == salary2 : false</text>
+  </g>
+  
+  <!-- 3. 기본형 메서드 호출 -->
+  <g id="primitive-method">
+    <text x="50" y="400" font-size="14" font-weight="bold" fill="#1976d2">3. changeSalary(salary1) 메서드 호출</text>
+    
+    <!-- 호출 전 -->
+    <rect x="50" y="420" width="120" height="40" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="5"/>
+    <text x="60" y="440" font-size="11" fill="#333">main 스택</text>
+    <text x="60" y="455" font-size="10" fill="#333">salary1 = 4500000</text>
+    
+    <!-- 메서드 스택 -->
+    <rect x="190" y="420" width="120" height="40" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="5"/>
+    <text x="200" y="440" font-size="11" fill="#333">changeSalary 스택</text>
+    <text x="200" y="455" font-size="10" fill="#333">salary = 4500000</text>
+    
+    <!-- 메서드 내부 변경 -->
+    <rect x="190" y="480" width="120" height="40" fill="#ffebee" stroke="#d32f2f" stroke-width="2" rx="5"/>
+    <text x="200" y="500" font-size="11" fill="#333">salary = 5000000</text>
+    <text x="200" y="515" font-size="10" fill="#333">(매개변수만 변경)</text>
+    
+    <!-- 메서드 종료 후 -->
+    <rect x="50" y="540" width="120" height="40" fill="#e8f5e8" stroke="#388e3c" stroke-width="2" rx="5"/>
+    <text x="60" y="560" font-size="11" fill="#333">메서드 종료 후</text>
+    <text x="60" y="575" font-size="10" fill="#333">salary1 = 4500000</text>
+    
+    <!-- 화살표 -->
+    <path d="M 170 440 L 185 440" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <text x="175" y="435" font-size="9" fill="#666">값 복사</text>
+  </g>
+  
+  <!-- 4. 참조형 변수 생성 -->
+  <g id="reference-creation">
+    <text x="400" y="70" font-size="14" font-weight="bold" fill="#1976d2">4. 참조형 변수 생성</text>
+    
+    <rect x="400" y="90" width="160" height="40" fill="#e3f2fd" stroke="#1976d2" stroke-width="2" rx="5"/>
+    <text x="410" y="115" font-size="12" fill="#333">Employee emp1 = new Employee()</text>
+    
+    <!-- 스택 -->
+    <rect x="400" y="140" width="100" height="40" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="5"/>
+    <text x="410" y="160" font-size="11" fill="#333">스택</text>
+    <text x="410" y="175" font-size="10" fill="#333">emp1 → x500</text>
+    
+    <!-- 힙 String -->
+    <rect x="520" y="140" width="100" height="30" fill="#e8f5e8" stroke="#388e3c" stroke-width="2" rx="5"/>
+    <text x="530" y="160" font-size="11" fill="#333">x501: "김개발"</text>
+    
+    <!-- 힙 Employee 객체 -->
+    <rect x="520" y="180" width="120" height="80" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2" rx="5"/>
+    <text x="530" y="200" font-size="11" fill="#333">x500: Employee</text>
+    <text x="530" y="215" font-size="10" fill="#333">name → x501</text>
+    <text x="530" y="230" font-size="10" fill="#333">salary = 4000000</text>
+    <text x="530" y="245" font-size="10" fill="#333">isFullTime = true</text>
+    
+    <!-- 화살표 -->
+    <path d="M 500 160 L 515 220" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+  </g>
+  
+  <!-- 5. 참조형 변수 참조 복사 -->
+  <g id="reference-copy">
+    <text x="400" y="290" font-size="14" font-weight="bold" fill="#1976d2">5. 참조 복사</text>
+    
+    <rect x="400" y="310" width="140" height="40" fill="#e3f2fd" stroke="#1976d2" stroke-width="2" rx="5"/>
+    <text x="410" y="335" font-size="12" fill="#333">Employee emp2 = emp1</text>
+    
+    <!-- 스택 -->
+    <rect x="400" y="360" width="100" height="60" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="5"/>
+    <text x="410" y="380" font-size="11" fill="#333">스택</text>
+    <text x="410" y="395" font-size="10" fill="#333">emp1 → x500</text>
+    <text x="410" y="410" font-size="10" fill="#333">emp2 → x500</text>
+    
+    <rect x="520" y="360" width="120" height="30" fill="#e8f5e8" stroke="#388e3c" stroke-width="2" rx="5"/>
+    <text x="530" y="380" font-size="11" fill="#333">emp1 == emp2 : true</text>
+    
+    <!-- 화살표들 -->
+    <path d="M 500 385 L 515 220" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <path d="M 500 400 L 515 220" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <text x="505" y="350" font-size="9" fill="#666">같은 객체 참조</text>
+  </g>
+  
+  <!-- 6. 참조를 통한 객체 수정 -->
+  <g id="reference-modify">
+    <text x="400" y="460" font-size="14" font-weight="bold" fill="#1976d2">6. emp2를 통한 객체 수정</text>
+    
+    <rect x="400" y="480" width="160" height="40" fill="#e3f2fd" stroke="#1976d2" stroke-width="2" rx="5"/>
+    <text x="410" y="505" font-size="12" fill="#333">emp2.name = "이개발", salary = 4500000</text>
+    
+    <!-- 힙 새 String -->
+    <rect x="520" y="530" width="100" height="30" fill="#e8f5e8" stroke="#388e3c" stroke-width="2" rx="5"/>
+    <text x="530" y="550" font-size="11" fill="#333">x600: "이개발"</text>
+    
+    <!-- 힙 수정된 Employee 객체 -->
+    <rect x="520" y="570" width="120" height="80" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2" rx="5"/>
+    <text x="530" y="590" font-size="11" fill="#333">x500: Employee</text>
+    <text x="530" y="605" font-size="10" fill="#333">name → x600</text>
+    <text x="530" y="620" font-size="10" fill="#333">salary = 4500000</text>
+    <text x="530" y="635" font-size="10" fill="#333">isFullTime = true</text>
+    
+    <rect x="400" y="530" width="100" height="40" fill="#ffebee" stroke="#d32f2f" stroke-width="2" rx="5"/>
+    <text x="410" y="550" font-size="10" fill="#333">emp1, emp2 모두</text>
+    <text x="410" y="565" font-size="10" fill="#333">같은 변경사항 반영</text>
+  </g>
+  
+  <!-- 7. 새로운 참조형 객체 생성 -->
+  <g id="new-reference">
+    <text x="700" y="70" font-size="14" font-weight="bold" fill="#1976d2">7. 새로운 객체 생성</text>
+    
+    <rect x="700" y="90" width="160" height="40" fill="#e3f2fd" stroke="#1976d2" stroke-width="2" rx="5"/>
+    <text x="710" y="115" font-size="12" fill="#333">Employee emp3 = new Employee()</text>
+    
+    <!-- 스택 -->
+    <rect x="700" y="140" width="100" height="80" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="5"/>
+    <text x="710" y="160" font-size="11" fill="#333">스택</text>
+    <text x="710" y="175" font-size="10" fill="#333">emp1 → x500</text>
+    <text x="710" y="190" font-size="10" fill="#333">emp2 → x500</text>
+    <text x="710" y="205" font-size="10" fill="#333">emp3 → x700</text>
+    
+    <!-- 힙 새 String -->
+    <rect x="820" y="140" width="110" height="30" fill="#e8f5e8" stroke="#388e3c" stroke-width="2" rx="5"/>
+    <text x="830" y="160" font-size="11" fill="#333">x701: "박마케팅"</text>
+    
+    <!-- 힙 새 Employee 객체 -->
+    <rect x="820" y="180" width="120" height="80" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2" rx="5"/>
+    <text x="830" y="200" font-size="11" fill="#333">x700: Employee</text>
+    <text x="830" y="215" font-size="10" fill="#333">name → x701</text>
+    <text x="830" y="230" font-size="10" fill="#333">salary = 4000000</text>
+    <text x="830" y="245" font-size="10" fill="#333">isFullTime = false</text>
+    
+    <rect x="700" y="270" width="120" height="30" fill="#ffebee" stroke="#d32f2f" stroke-width="2" rx="5"/>
+    <text x="710" y="290" font-size="11" fill="#333">emp1 == emp3 : false</text>
+    
+    <!-- 화살표 -->
+    <path d="M 800 200 L 815 220" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+  </g>
+  
+  <!-- 8. 참조형 메서드 호출 -->
+  <g id="reference-method">
+    <text x="700" y="330" font-size="14" font-weight="bold" fill="#1976d2">8. changeEmployeeInfo(emp1) 메서드 호출</text>
+    
+    <!-- 호출 전 -->
+    <rect x="700" y="350" width="120" height="40" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="5"/>
+    <text x="710" y="370" font-size="11" fill="#333">main 스택</text>
+    <text x="710" y="385" font-size="10" fill="#333">emp1 → x500</text>
+    
+    <!-- 메서드 스택 -->
+    <rect x="840" y="350" width="120" height="40" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="5"/>
+    <text x="850" y="370" font-size="11" fill="#333">changeEmployeeInfo</text>
+    <text x="850" y="385" font-size="10" fill="#333">emp → x500</text>
+    
+    <!-- 메서드 내부 변경 -->
+    <rect x="700" y="410" width="140" height="60" fill="#ffebee" stroke="#d32f2f" stroke-width="2" rx="5"/>
+    <text x="710" y="430" font-size="11" fill="#333">메서드 내부</text>
+    <text x="710" y="445" font-size="10" fill="#333">emp.name = "최시니어"</text>
+    <text x="710" y="460" font-size="10" fill="#333">emp.salary = 6000000</text>
+    
+    <!-- 메서드 종료 후 -->
+    <rect x="860" y="410" width="120" height="60" fill="#e8f5e8" stroke="#388e3c" stroke-width="2" rx="5"/>
+    <text x="870" y="430" font-size="11" fill="#333">메서드 종료 후</text>
+    <text x="870" y="445" font-size="10" fill="#333">emp1이 가리키는</text>
+    <text x="870" y="460" font-size="10" fill="#333">객체가 변경됨</text>
+    
+    <!-- 화살표 -->
+    <path d="M 820 370 L 835 370" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <text x="825" y="365" font-size="9" fill="#666">참조 복사</text>
+  </g>
+  
+  <!-- 9. null 참조 -->
+  <g id="null-reference">
+    <text x="1050" y="70" font-size="14" font-weight="bold" fill="#1976d2">9. null 참조</text>
+    
+    <rect x="1050" y="90" width="140" height="40" fill="#e3f2fd" stroke="#1976d2" stroke-width="2" rx="5"/>
+    <text x="1060" y="115" font-size="12" fill="#333">Employee emp4 = null</text>
+    
+    <!-- 스택 -->
+    <rect x="1050" y="140" width="100" height="40" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="5"/>
+    <text x="1060" y="160" font-size="11" fill="#333">스택</text>
+    <text x="1060" y="175" font-size="10" fill="#333">emp4 = null</text>
+    
+    <rect x="1050" y="190" width="140" height="60" fill="#ffebee" stroke="#d32f2f" stroke-width="2" rx="5"/>
+    <text x="1060" y="210" font-size="11" fill="#333">emp4 == null : true</text>
+    <text x="1060" y="225" font-size="10" fill="#333">emp4.name 접근 시</text>
+    <text x="1060" y="240" font-size="10" fill="#333">NullPointerException</text>
+  </g>
+  
+  <!-- 화살표 마커 정의 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    </marker>
+  </defs>
+</svg>
