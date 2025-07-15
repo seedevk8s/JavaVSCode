@@ -1,0 +1,87 @@
+sequenceDiagram
+    participant U as User
+    participant UM as UserManager
+    participant PC as ProductCatalog
+    participant P as Product
+    participant SC as ShoppingCart
+    participant CI as CartItem
+    participant OS as OrderService
+    participant O as Order
+    participant OH as OrderHistory
+    participant PAY as Payment
+    participant PH as PaymentHistory
+    participant S as Shipment
+    participant ST as ShipmentTracker
+
+    Note over U, ST: E-Commerce 주문 처리 전체 흐름
+
+    %% 1. 사용자 로그인
+    U->>UM: 로그인 요청
+    UM->>UM: findUser(userId)
+    UM-->>U: 사용자 정보 반환
+
+    %% 2. 상품 검색 및 장바구니 추가
+    U->>PC: 상품 검색
+    PC->>P: findProduct(productId)
+    PC-->>U: 상품 정보 반환
+    
+    U->>SC: addItem(product, quantity)
+    SC->>CI: CartItem 생성
+    SC->>SC: calculateTotal()
+    SC-->>U: 장바구니 업데이트 완료
+
+    %% 3. 주문 생성
+    U->>OS: 주문 생성 요청
+    OS->>O: createOrder(userId)
+    O->>O: Order 객체 생성
+    OS-->>U: 주문 ID 반환
+
+    %% 4. 주문에 상품 추가
+    U->>O: addProduct(productId, price)
+    O->>O: 상품 추가 및 총액 계산
+    O-->>U: 상품 추가 완료
+
+    %% 5. 주문 처리 시작
+    U->>O: processOrder()
+    O->>O: 상태를 PROCESSING으로 변경
+    O->>OH: OrderHistory 생성
+    OH->>OH: recordStatusChange("PROCESSING")
+    O-->>U: 주문 처리 시작
+
+    %% 6. 결제 처리
+    U->>PAY: Payment 생성
+    PAY->>PAY: 결제 객체 초기화
+    U->>PAY: processPayment()
+    PAY->>PAY: 결제 처리
+    PAY->>PAY: completePayment()
+    PAY->>PH: PaymentHistory 생성
+    PH->>PH: recordPaymentStatus("COMPLETED")
+    PAY-->>U: 결제 완료
+
+    %% 7. 배송 준비
+    U->>S: Shipment 생성
+    S->>S: 배송 객체 초기화 (상태: PREPARING)
+    U->>S: ship()
+    S->>S: 상태를 SHIPPED로 변경
+    S->>ST: ShipmentTracker 생성
+    ST->>ST: 추적 번호 생성
+    S-->>U: 배송 시작
+
+    %% 8. 배송 추적
+    loop 배송 중
+        ST->>ST: updateLocation(location, description)
+        ST->>ST: TrackingInfo 추가
+    end
+    
+    U->>ST: trackShipment()
+    ST-->>U: 배송 현황 반환
+
+    %% 9. 배송 완료
+    ST->>S: 배송 완료 알림
+    S->>S: deliver()
+    S->>O: 주문 완료 알림
+    O->>O: completeOrder()
+    O->>OH: recordStatusChange("COMPLETED")
+    S-->>U: 배송 완료
+
+    Note over U, ST: 주문 처리 완료
