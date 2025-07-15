@@ -1,0 +1,247 @@
+classDiagram
+    %% User Package
+    namespace user {
+        class User {
+            -String userId
+            -String name
+            -String email
+            +User(userId, name, email)
+            +getUserId() String
+            +getName() String
+            +getEmail() String
+            +setUserId(userId)
+            +setName(name)
+            +setEmail(email)
+            +toString() String
+        }
+        
+        class UserManager {
+            +createUser(user)
+            +findUser(userId) User
+            +updateUser(user)
+            +deleteUser(userId)
+        }
+        
+        class UserHistory {
+            -String userId
+            -String action
+            -LocalDateTime timestamp
+            +UserHistory(userId, action)
+            +recordAction(action)
+            +getUserId() String
+            +getAction() String
+            +getTimestamp() LocalDateTime
+        }
+    }
+
+    %% Product Package
+    namespace product {
+        class Product {
+            -String productId
+            -String name
+            -double price
+            -String description
+            -int stockQuantity
+            +Product(productId, name, price, description)
+            +isAvailable() boolean
+            +updateStock(quantity)
+            +getProductId() String
+            +getName() String
+            +getPrice() double
+            +getDescription() String
+            +getStockQuantity() int
+            +toString() String
+        }
+        
+        class ProductCatalog {
+            -List~Product~ products
+            +ProductCatalog()
+            +addProduct(product)
+            +findProduct(productId) Product
+            +removeProduct(productId)
+            +getAllProducts() List~Product~
+        }
+        
+        class ProductImage {
+            -String productId
+            -List~String~ imageUrls
+            -String mainImageUrl
+            +ProductImage(productId)
+            +addImage(imageUrl)
+            +setMainImage(imageUrl)
+            +getProductId() String
+            +getImageUrls() List~String~
+            +getMainImageUrl() String
+        }
+    }
+
+    %% Order Package
+    namespace order {
+        class Order {
+            -String orderId
+            -String userId
+            -List~String~ productIds
+            -double totalAmount
+            -String status
+            -LocalDateTime orderDate
+            +Order(orderId, userId)
+            +addProduct(productId, price)
+            +processOrder()
+            +completeOrder()
+            +getOrderId() String
+            +getUserId() String
+            +getProductIds() List~String~
+            +getTotalAmount() double
+            +getStatus() String
+            +getOrderDate() LocalDateTime
+        }
+        
+        class OrderService {
+            +createOrder(userId) Order
+            +cancelOrder(orderId)
+            +findOrder(orderId) Order
+            +updateOrderStatus(orderId, status)
+        }
+        
+        class OrderHistory {
+            -String orderId
+            -String previousStatus
+            -String currentStatus
+            -LocalDateTime timestamp
+            +OrderHistory(orderId, previousStatus, currentStatus)
+            +recordStatusChange(newStatus)
+            +getOrderId() String
+            +getPreviousStatus() String
+            +getCurrentStatus() String
+            +getTimestamp() LocalDateTime
+        }
+    }
+
+    %% Cart Package
+    namespace cart {
+        class ShoppingCart {
+            -String userId
+            -List~CartItem~ items
+            -double totalAmount
+            +ShoppingCart(userId)
+            +addItem(product, quantity)
+            +removeItem(productId)
+            +clearCart()
+            -calculateTotal()
+            +getUserId() String
+            +getItems() List~CartItem~
+            +getTotalAmount() double
+        }
+        
+        class CartItem {
+            -String productId
+            -int quantity
+            -double unitPrice
+            +CartItem(productId, quantity, unitPrice)
+            +getTotalPrice() double
+            +updateQuantity(newQuantity)
+            +getProductId() String
+            +getQuantity() int
+            +setQuantity(quantity)
+            +getUnitPrice() double
+        }
+    }
+
+    %% Payment Package
+    namespace payment {
+        class Payment {
+            -String paymentId
+            -String orderId
+            -double amount
+            -String paymentMethod
+            -String status
+            -LocalDateTime paymentDate
+            +Payment(paymentId, orderId, amount, paymentMethod)
+            +processPayment()
+            +completePayment()
+            +failPayment(reason)
+            +getPaymentId() String
+            +getOrderId() String
+            +getAmount() double
+            +getPaymentMethod() String
+            +getStatus() String
+            +getPaymentDate() LocalDateTime
+        }
+        
+        class PaymentHistory {
+            -String paymentId
+            -String status
+            -LocalDateTime timestamp
+            -String description
+            +PaymentHistory(paymentId, status, description)
+            +recordPaymentStatus(status, description)
+            +getPaymentId() String
+            +getStatus() String
+            +getTimestamp() LocalDateTime
+            +getDescription() String
+        }
+    }
+
+    %% Shipping Package
+    namespace shipping {
+        class Shipment {
+            -String shipmentId
+            -String orderId
+            -String deliveryAddress
+            -String status
+            -LocalDateTime shipmentDate
+            -LocalDateTime estimatedDeliveryDate
+            +Shipment(shipmentId, orderId, deliveryAddress)
+            +ship()
+            +deliver()
+            +getShipmentId() String
+            +getOrderId() String
+            +getDeliveryAddress() String
+            +getStatus() String
+            +getShipmentDate() LocalDateTime
+            +getEstimatedDeliveryDate() LocalDateTime
+        }
+        
+        class ShipmentTracker {
+            -String trackingNumber
+            -String shipmentId
+            -List~TrackingInfo~ trackingHistory
+            -String currentLocation
+            -String status
+            +ShipmentTracker(trackingNumber, shipmentId)
+            +updateLocation(location, description)
+            +trackShipment()
+            +getTrackingNumber() String
+            +getShipmentId() String
+            +getCurrentLocation() String
+            +getStatus() String
+            +getTrackingHistory() List~TrackingInfo~
+        }
+        
+        class TrackingInfo {
+            -String location
+            -String description
+            -LocalDateTime timestamp
+            +TrackingInfo(location, description, timestamp)
+            +getLocation() String
+            +getDescription() String
+            +getTimestamp() LocalDateTime
+        }
+    }
+
+    %% Relationships
+    UserManager --> User : manages
+    UserHistory --> User : tracks
+    ProductCatalog --> Product : contains
+    ProductImage --> Product : belongs to
+    ShoppingCart --> CartItem : contains
+    CartItem --> Product : references
+    OrderService --> Order : manages
+    OrderHistory --> Order : tracks
+    Order --> User : belongs to
+    Order --> Product : contains
+    Payment --> Order : pays for
+    PaymentHistory --> Payment : tracks
+    Shipment --> Order : ships
+    ShipmentTracker --> Shipment : tracks
+    ShipmentTracker --> TrackingInfo : contains
