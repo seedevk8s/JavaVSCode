@@ -1,0 +1,91 @@
+graph TB
+    subgraph "E-Commerce System"
+        subgraph "user Package"
+            U[User]
+            UM[UserManager]
+            UH[UserHistory]
+        end
+
+        subgraph "product Package"
+            P[Product]
+            PC[ProductCatalog]
+            PI[ProductImage]
+        end
+
+        subgraph "cart Package"
+            SC[ShoppingCart]
+            CI[CartItem]
+        end
+
+        subgraph "order Package"
+            O[Order]
+            OS[OrderService]
+            OH[OrderHistory]
+        end
+
+        subgraph "payment Package"
+            PAY[Payment]
+            PH[PaymentHistory]
+        end
+
+        subgraph "shipping Package"
+            S[Shipment]
+            ST[ShipmentTracker]
+            TI[TrackingInfo]
+        end
+
+        subgraph "Main Application"
+            M[Main]
+        end
+    end
+
+    %% Package Dependencies
+    M -.-> U
+    M -.-> UM
+    M -.-> UH
+    M -.-> P
+    M -.-> PC
+    M -.-> PI
+    M -.-> SC
+    M -.-> CI
+    M -.-> O
+    M -.-> OS
+    M -.-> OH
+    M -.-> PAY
+    M -.-> PH
+    M -.-> S
+    M -.-> ST
+
+    %% Inter-package relationships
+    UM --> U
+    UH --> U
+    PC --> P
+    PI --> P
+    SC --> CI
+    SC --> P
+    OS --> O
+    OH --> O
+    O --> U
+    O --> P
+    PAY --> O
+    PH --> PAY
+    S --> O
+    ST --> S
+    ST --> TI
+
+    %% Styling
+    classDef userPkg fill:#e1f5fe
+    classDef productPkg fill:#f3e5f5
+    classDef cartPkg fill:#e8f5e8
+    classDef orderPkg fill:#fff3e0
+    classDef paymentPkg fill:#fce4ec
+    classDef shippingPkg fill:#f1f8e9
+    classDef mainPkg fill:#fff8e1
+
+    class U,UM,UH userPkg
+    class P,PC,PI productPkg
+    class SC,CI cartPkg
+    class O,OS,OH orderPkg
+    class PAY,PH paymentPkg
+    class S,ST,TI shippingPkg
+    class M mainPkg
