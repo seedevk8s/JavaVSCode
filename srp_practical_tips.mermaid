@@ -1,0 +1,57 @@
+graph TD
+    subgraph "🎯 단일 책임 원칙 (SRP) 실무 적용 가이드"
+        
+        subgraph "📋 SRP 위반 신호 감지"
+            Signal1["🚨 클래스 이름 체크<br/>━━━━━━━━━━━━━━━━━<br/>❌ Manager, Handler, Util<br/>❌ Helper, Common, Base<br/>✅ Validator, Service, Repository<br/>✅ Calculator, Formatter, Parser"]
+            
+            Signal2["🚨 변경 이유 체크<br/>━━━━━━━━━━━━━━━━━<br/>❓ 이 클래스를 언제 수정할까?<br/>• 답이 2개 이상 → 분리 필요<br/>• 여러 부서가 관심 → 분리 필요<br/>• 다른 이유로 동시 수정 → 분리 필요"]
+            
+            Signal3["🚨 메서드 개수 체크<br/>━━━━━━━━━━━━━━━━━<br/>✅ 5-7개: 적당함<br/>⚠️ 10개 이상: 분리 검토<br/>❌ 20개 이상: 무조건 분리<br/>📏 줄 수: 200줄 넘으면 검토"]
+            
+            Signal4["🚨 테스트 난이도 체크<br/>━━━━━━━━━━━━━━━━━<br/>❌ 하나 기능만 테스트 어려움<br/>❌ Mock 객체 설정 복잡<br/>❌ 테스트 데이터 준비 복잡<br/>✅ 독립적 테스트 가능해야 함"]
+            
+            style Signal1 fill:#fee2e2,stroke:#ef4444,stroke-width:2px,color:#7f1d1d
+            style Signal2 fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#92400e
+            style Signal3 fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+            style Signal4 fill:#e0e7ff,stroke:#6366f1,stroke-width:2px,color:#4338ca
+        end
+        
+        subgraph "🔧 리팩토링 전략"
+            Strategy1["📝 1단계: 책임 식별<br/>━━━━━━━━━━━━━━━━━<br/>• 메서드들을 그룹핑<br/>• 비슷한 추상화 레벨끼리<br/>• 변경 빈도가 비슷한 것끼리<br/>• 사용하는 데이터가 비슷한 것끼리"]
+            
+            Strategy2["✂️ 2단계: 클래스 분리<br/>━━━━━━━━━━━━━━━━━<br/>• Extract Class 리팩토링<br/>• 단일 책임으로 새 클래스 생성<br/>• 기존 클래스에서 코드 이동<br/>• 의존성 관계 정리"]
+            
+            Strategy3["🔗 3단계: 조립 패턴<br/>━━━━━━━━━━━━━━━━━<br/>• Factory Pattern 적용<br/>• Service Layer 구성<br/>• Facade Pattern 고려<br/>• 사용자는 간단한 인터페이스만"]
+            
+            Strategy4["🧪 4단계: 테스트 개선<br/>━━━━━━━━━━━━━━━━━<br/>• 각 클래스별 단위 테스트<br/>• Mock 객체 활용<br/>• 통합 테스트 추가<br/>• 테스트 커버리지 확인"]
+            
+            style Strategy1 fill:#ecfdf5,stroke:#10b981,stroke-width:2px,color:#047857
+            style Strategy2 fill:#eff6ff,stroke:#2563eb,stroke-width:2px,color:#1d4ed8
+            style Strategy3 fill:#fdf4ff,stroke:#a855f7,stroke-width:2px,color:#7c2d12
+            style Strategy4 fill:#fef7ed,stroke:#ea580c,stroke-width:2px,color:#9a3412
+        end
+        
+        subgraph "💼 실무 패턴 예시"
+            Pattern1["🏦 온라인 뱅킹 시스템<br/>━━━━━━━━━━━━━━━━━<br/>❌ AccountManager (모든 책임)<br/>✅ AccountValidator (검증)<br/>✅ TransactionService (거래)<br/>✅ NotificationService (알림)<br/>✅ AuditLogger (감사로그)"]
+            
+            Pattern2["🛒 이커머스 시스템<br/>━━━━━━━━━━━━━━━━━<br/>❌ OrderProcessor (모든 책임)<br/>✅ OrderValidator (주문검증)<br/>✅ PaymentService (결제)<br/>✅ InventoryService (재고)<br/>✅ EmailService (이메일)"]
+            
+            Pattern3["🎮 게임 개발<br/>━━━━━━━━━━━━━━━━━<br/>❌ GameManager (모든 책임)<br/>✅ PlayerValidator (플레이어검증)<br/>✅ GameLogic (게임로직)<br/>✅ ScoreCalculator (점수계산)<br/>✅ LeaderboardService (랭킹)"]
+            
+            style Pattern1 fill:#f0fdf4,stroke:#16a34a,stroke-width:2px,color:#15803d
+            style Pattern2 fill:#f8fafc,stroke:#64748b,stroke-width:2px,color:#334155
+            style Pattern3 fill:#fefce8,stroke:#eab308,stroke-width:2px,color:#a16207
+        end
+    end
+    
+    subgraph "🎓 면접 대비 포인트"
+        Interview1["❓ SRP가 뭔가요?<br/>━━━━━━━━━━━━━━━━━<br/>💬 하나의 클래스는 하나의 변경 이유만<br/>가져야 한다는 원칙입니다.<br/>예를 들어 사용자 관리에서<br/>UserValidator는 검증만,<br/>UserService는 비즈니스 로직만 담당"]
+        
+        Interview2["❓ 왜 필요한가요?<br/>━━━━━━━━━━━━━━━━━<br/>💬 유지보수성, 테스트 용이성,<br/>재사용성을 높이기 위해서입니다.<br/>한 클래스가 여러 책임을 가지면<br/>한 부분 수정 시 다른 부분에<br/>영향을 줄 수 있습니다"]
+        
+        Interview3["❓ 실무 적용 경험은?<br/>━━━━━━━━━━━━━━━━━<br/>💬 게임 캐릭터 시스템에서<br/>CharacterNameValidator(검증),<br/>GameCharacterFactory(생성),<br/>GameCharacter(게임로직)로<br/>분리하여 설계했습니다"]
+        
+        style Interview1 fill:#f0f9ff,stroke:#0ea5e9,stroke-width:2px,color:#0c4a6e
+        style Interview2 fill:#f7fee7,stroke:#65a30d,stroke-width:2px,color:#365314
+        style Interview3 fill:#fefce8,stroke:#ca8a04,stroke-width:2px,color:#713f12
+    end
