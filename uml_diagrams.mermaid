@@ -1,0 +1,94 @@
+graph TB
+    subgraph "🏗️ Model Layer (도메인 모델)"
+        Vehicle["🚗 Vehicle<br/><i><<abstract class>></i><br/>─────────────────<br/>- vehicleId: String<br/>- name: String<br/>- vehicleType: VehicleType<br/>- status: VehicleStatus<br/>- registrationTime: LocalDateTime<br/>- totalMileage: double<br/>- lastMaintenanceDate: LocalDateTime<br/>─────────────────<br/>+ startEngine(): void<br/>+ drive(distance: double): void<br/>+ stop(): void<br/>+ performMaintenance(): String<br/>+ changeStatus(status): void<br/>+ addMileage(distance): void"]
+        
+        ManualVehicle["🔧 ManualVehicle<br/>─────────────────<br/>- fuelLevel: double<br/>- engineTemperature: int<br/>─────────────────<br/>+ startEngine(): void<br/>+ drive(distance): void<br/>+ stop(): void<br/>+ performMaintenance(): String<br/>- simulateDriving(distance): void"]
+        
+        AutonomousVehicle["🤖 AutonomousVehicle<br/>─────────────────<br/>- batteryLevel: double<br/>- aiSystemVersion: String<br/>- sensorsActive: boolean<br/>- gpsConnected: boolean<br/>─────────────────<br/>+ startEngine(): void<br/>+ drive(distance): void<br/>+ stop(): void<br/>+ performMaintenance(): String<br/>- activateSensors(): void<br/>- connectToGPS(): void<br/>- simulateAutonomousDriving(): void"]
+    end
+    
+    subgraph "📋 Enums (열거형)"
+        VehicleType["🏷️ VehicleType<br/>─────────────────<br/>MANUAL<br/>AUTONOMOUS<br/>HYBRID<br/>ELECTRIC<br/>─────────────────<br/>+ getDisplayName(): String<br/>+ getDescription(): String<br/>+ fromDisplayName(name): VehicleType"]
+        
+        VehicleStatus["📊 VehicleStatus<br/>─────────────────<br/>PARKED<br/>STARTING<br/>RUNNING<br/>STOPPED<br/>MAINTENANCE<br/>OUT_OF_SERVICE<br/>─────────────────<br/>+ canDrive(): boolean<br/>+ canStart(): boolean"]
+    end
+    
+    subgraph "⚙️ Service Layer (비즈니스 로직)"
+        VehicleService["🎯 VehicleManagementService<br/>─────────────────<br/>- vehicleRepository: Map<String, Vehicle><br/>- driveHistoryList: List<DriveHistory><br/>- statisticsCache: Map<String, Object><br/>─────────────────<br/>+ registerVehicle(vehicle): String<br/>+ unregisterVehicle(vehicleId): boolean<br/>+ operateVehicle(vehicleId, distance): void<br/>+ operateAllVehicles(distance): OperationSummary<br/>+ performMaintenance(vehicleId): String<br/>+ getSystemStatistics(): SystemStatistics<br/>+ getDriveHistory(limit): List<DriveHistory><br/>+ getVehiclesByType(type): List<Vehicle><br/>+ getVehiclesByStatus(status): List<Vehicle><br/>+ getAllVehicles(): List<Vehicle><br/>- getVehicleById(id): Vehicle<br/>- clearStatisticsCache(): void"]
+    end
+    
+    subgraph "🏭 Factory Pattern (객체 생성)"
+        VehicleFactory["🏭 VehicleFactory<br/>─────────────────<br/>+ createVehicle(type, name): Vehicle<br/>+ createRandomVehicle(): Vehicle<br/>+ createRandomVehicles(count): List<Vehicle>"]
+    end
+    
+    subgraph "🚨 Exception Handling (예외 처리)"
+        VehicleException["⚠️ VehicleManagementException<br/>─────────────────<br/>+ VehicleManagementException()<br/>+ VehicleManagementException(message)<br/>+ VehicleManagementException(message, cause)<br/>+ VehicleManagementException(cause)"]
+    end
+    
+    subgraph "🎨 Utils & Display (유틸리티)"
+        DisplayUtils["🖥️ DisplayUtils<br/>─────────────────<br/>+ displayVehicleList(vehicles, title): void<br/>+ displaySystemStatistics(statistics): void<br/>+ displayDriveHistory(history, limit): void<br/>+ displayOperationSummary(summary): void<br/>+ displayProgramHeader(): void<br/>+ displayMenu(): void<br/>+ displayProgress(current, total, desc): void<br/>- truncateString(str, maxLength): String"]
+    end
+    
+    subgraph "📱 Application Layer (애플리케이션)"
+        Main["🚀 Main<br/>─────────────────<br/>- vehicleService: VehicleManagementService<br/>- scanner: Scanner<br/>─────────────────<br/>+ main(args): void<br/>- runMainLoop(): void<br/>- registerVehicleInteractive(): void<br/>- operateSingleVehicleInteractive(): void<br/>- operateAllVehiclesInteractive(): void<br/>- performMaintenanceInteractive(): void<br/>- viewSystemStatistics(): void<br/>- viewDriveHistory(): void<br/>- generateRandomVehiclesInteractive(): void<br/>- setupInitialData(): void<br/>- getIntInput(): int<br/>- getDoubleInput(): double<br/>- getStringInput(): String"]
+    end
+    
+    subgraph "📊 Inner Classes (내부 클래스)"
+        DriveHistory["📝 DriveHistory<br/>─────────────────<br/>- operationId: String<br/>- vehicleId: String<br/>- vehicleName: String<br/>- startTime: LocalDateTime<br/>- endTime: LocalDateTime<br/>- distance: double<br/>- success: boolean<br/>- errorMessage: String<br/>─────────────────<br/>+ getters()..."]
+        
+        OperationSummary["📈 OperationSummary<br/>─────────────────<br/>- totalVehicles: int<br/>- successCount: int<br/>- failureCount: int<br/>- failureReasons: List<String><br/>─────────────────<br/>+ getSuccessRate(): double<br/>+ getters()..."]
+        
+        SystemStatistics["📊 SystemStatistics<br/>─────────────────<br/>- totalVehicles: int<br/>- vehicleTypeCount: Map<VehicleType, Long><br/>- vehicleStatusCount: Map<VehicleStatus, Long><br/>- totalMileage: double<br/>- totalDriveOperations: int<br/>- successRate: double<br/>- generatedTime: LocalDateTime<br/>─────────────────<br/>+ isRecent(): boolean<br/>+ getters()..."]
+    end
+    
+    %% 상속 관계 (Inheritance)
+    Vehicle -.->|extends| ManualVehicle
+    Vehicle -.->|extends| AutonomousVehicle
+    
+    %% 조합 관계 (Composition)
+    Vehicle -->|uses| VehicleType
+    Vehicle -->|uses| VehicleStatus
+    
+    %% 의존 관계 (Dependency)
+    VehicleService -->|manages| Vehicle
+    VehicleService -->|creates| DriveHistory
+    VehicleService -->|creates| OperationSummary
+    VehicleService -->|creates| SystemStatistics
+    VehicleService -->|throws| VehicleException
+    
+    VehicleFactory -->|creates| Vehicle
+    VehicleFactory -->|creates| ManualVehicle
+    VehicleFactory -->|creates| AutonomousVehicle
+    VehicleFactory -->|uses| VehicleType
+    VehicleFactory -->|throws| VehicleException
+    
+    Main -->|uses| VehicleService
+    Main -->|uses| VehicleFactory
+    Main -->|uses| DisplayUtils
+    Main -->|handles| VehicleException
+    
+    DisplayUtils -->|displays| Vehicle
+    DisplayUtils -->|displays| SystemStatistics
+    DisplayUtils -->|displays| DriveHistory
+    DisplayUtils -->|displays| OperationSummary
+    
+    %% 스타일링
+    classDef abstract fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef concrete fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef enum fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef service fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px,color:#000
+    classDef factory fill:#fff8e1,stroke:#f57f17,stroke-width:2px,color:#000
+    classDef exception fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    classDef util fill:#f1f8e9,stroke:#33691e,stroke-width:2px,color:#000
+    classDef main fill:#e3f2fd,stroke:#0d47a1,stroke-width:2px,color:#000
+    classDef inner fill:#fce4ec,stroke:#880e4f,stroke-width:2px,color:#000
+    
+    class Vehicle abstract
+    class ManualVehicle,AutonomousVehicle concrete
+    class VehicleType,VehicleStatus enum
+    class VehicleService service
+    class VehicleFactory factory
+    class VehicleException exception
+    class DisplayUtils util
+    class Main main
+    class DriveHistory,OperationSummary,SystemStatistics inner
