@@ -1,0 +1,105 @@
+sequenceDiagram
+    participant User as 사용자
+    participant UI as LibraryManagementSystem
+    participant Service as Library
+    participant Book as Book
+    participant Member as Member
+    participant Exception as Exception Classes
+
+    Note over User, Exception: 도서 대출 프로세스
+
+    User->>UI: 1. 도서 대출 선택
+    UI->>User: 2. ISBN 입력 요청
+    User->>UI: 3. ISBN 입력
+    UI->>User: 4. 회원 ID 입력 요청
+    User->>UI: 5. 회원 ID 입력
+
+    UI->>Service: 6. borrowBook(isbn, memberId)
+    
+    Service->>Service: 7. 책 존재 확인
+    alt 책이 존재하지 않음
+        Service->>Exception: throw BookNotFoundException
+        Exception->>UI: BookNotFoundException
+        UI->>User: 오류 메시지 출력
+    else 책이 존재함
+        Service->>Service: 8. 회원 존재 확인
+        alt 회원이 존재하지 않음
+            Service->>Exception: throw MemberNotFoundException
+            Exception->>UI: MemberNotFoundException
+            UI->>User: 오류 메시지 출력
+        else 회원이 존재함
+            Service->>Book: 9. borrowTo(memberId)
+            Book->>Book: 10. 대출 가능 여부 확인
+            alt 이미 대출중
+                Book->>Exception: throw BookAlreadyBorrowedException
+                Exception->>Service: BookAlreadyBorrowedException
+                Service->>UI: Exception 전파
+                UI->>User: 오류 메시지 출력
+            else 대출 가능
+                Book->>Book: 11. 대출 상태 변경
+                Service->>Member: 12. borrowBook(isbn)
+                Member->>Member: 13. 대출 권수 확인
+                alt 대출 한도 초과
+                    Member->>Exception: throw LibraryException
+                    Exception->>Service: LibraryException
+                    Service->>UI: Exception 전파
+                    UI->>User: 오류 메시지 출력
+                else 대출 가능
+                    Member->>Member: 14. 대출 목록에 추가
+                    Service->>UI: 15. 대출 성공 메시지
+                    UI->>User: 16. 대출 완료 출력
+                end
+            end
+        end
+    end
+
+    Note over User, Exception: 도서 반납 프로세스
+
+    User->>UI: 17. 도서 반납 선택
+    UI->>User: 18. ISBN 입력 요청
+    User->>UI: 19. ISBN 입력
+
+    UI->>Service: 20. returnBook(isbn)
+    Service->>Service: 21. 책 존재 확인
+    alt 책이 존재하지 않음
+        Service->>Exception: throw BookNotFoundException
+        Exception->>UI: BookNotFoundException
+        UI->>User: 오류 메시지 출력
+    else 책이 존재함
+        Service->>Book: 22. 대출 상태 확인
+        alt 대출되지 않은 책
+            Service->>Exception: throw LibraryException
+            Exception->>UI: LibraryException
+            UI->>User: 오류 메시지 출력
+        else 대출중인 책
+            Book->>Book: 23. 연체 여부 확인
+            Service->>Member: 24. returnBook(isbn)
+            Member->>Member: 25. 대출 목록에서 제거
+            Book->>Book: 26. 반납 상태 변경
+            Service->>UI: 27. 반납 성공 메시지
+            UI->>User: 28. 반납 완료 출력
+        end
+    end
+
+    Note over User, Exception: 회원 대출 현황 조회
+
+    User->>UI: 29. 회원 대출 현황 조회
+    UI->>User: 30. 회원 ID 입력 요청
+    User->>UI: 31. 회원 ID 입력
+
+    UI->>Service: 32. displayMemberBorrowStatus(memberId)
+    Service->>Service: 33. 회원 존재 확인
+    alt 회원이 존재하지 않음
+        Service->>Exception: throw MemberNotFoundException
+        Exception->>UI: MemberNotFoundException
+        UI->>User: 오류 메시지 출력
+    else 회원이 존재함
+        Service->>Member: 34. getBorrowedBooks()
+        Member->>Service: 35. 대출 도서 목록 반환
+        loop 각 대출 도서에 대해
+            Service->>Book: 36. 도서 정보 조회
+            Book->>Service: 37. 도서 정보 반환
+        end
+        Service->>UI: 38. 대출 현황 정보
+        UI->>User: 39. 대출 현황 출력
+    end
