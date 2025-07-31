@@ -1,0 +1,48 @@
+flowchart TD
+    Start([도서관 관리 시스템 구현 시작]) --> Phase1
+    
+    Phase1[1단계: 기반 구조 20분] --> P1A
+    P1A[Person.java<br/>추상클래스 구현] --> P1Test[테스트: 컴파일 확인]
+    P1Test --> Phase2
+    
+    Phase2[2단계: 도메인 모델 90분] --> P2A
+    P2A[Member.java 30분] --> P2B[Librarian.java 20분]
+    P2B --> P2C[Book.java 40분 핵심!]
+    P2C --> P2Test[테스트: 객체 생성 및 메서드 호출]
+    P2Test --> Phase3
+    
+    Phase3[3단계: 예외 처리 25분] --> P3A
+    P3A[LibraryException.java] --> P3B[BookNotFoundException.java]
+    P3B --> P3C[BookAlreadyBorrowedException.java]
+    P3C --> P3D[MemberNotFoundException.java]
+    P3D --> P3Test[테스트: try-catch 예외 확인]
+    P3Test --> Phase4
+    
+    Phase4[4단계: 서비스 레이어 140분 가장중요!] --> P4A
+    P4A[Library.java 기본구조] --> P4B[책관리 메서드 40분]
+    P4B --> P4C[회원관리 메서드 20분]
+    P4C --> P4D[대출반납 메서드 50분]
+    P4D --> P4E[조회통계 메서드 30분]
+    P4E --> P4Test[테스트: 통합 테스트 필수]
+    P4Test --> Phase5
+    
+    Phase5[5단계: UI 60분] --> P5A
+    P5A[LibraryManagementSystem.java] --> P5B[메뉴시스템 구현]
+    P5B --> P5Test[테스트: 전체 시나리오]
+    P5Test --> Complete[구현 완료!]
+    
+    %% 핵심 포인트들
+    KeyPoints[핵심 포인트<br/>- Book과 Member 동기화<br/>- HashMap 활용<br/>- LocalDate 연체계산]
+    
+    Warnings[주의사항<br/>- 두 객체 모두 업데이트<br/>- null 체크 필수<br/>- Scanner 자원해제]
+    
+    Goals[학습목표<br/>- 객체지향 설계<br/>- 예외처리 체계<br/>- 컬렉션 활용]
+    
+    %% 스타일
+    classDef phase fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef important fill:#ffebee,stroke:#d32f2f,stroke-width:3px
+    classDef keypoint fill:#fff8e1,stroke:#ff8f00,stroke-width:2px
+    
+    class Phase1,Phase2,Phase3,Phase5 phase
+    class Phase4 important
+    class KeyPoints,Warnings,Goals keypoint
