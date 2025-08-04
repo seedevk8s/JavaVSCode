@@ -433,9 +433,6 @@ public static void quickTest() {
 - 사용자 친화적인 UI
 - 예외 상황 처리
 
-## 실행 방법
-1. 컴파일: javac -d . *.java
-2. 실행: java totallab.main.ShoppingMallSystem
 ```
 
 ---
@@ -454,4 +451,4 @@ public static void quickTest() {
 - 통계 정보 정확한 계산
 - 직관적이고 안정적인 UI
 
-**화이팅! 실무에서 통하는 개발 실력을 기르는 좋은 기회입니다! 🚀**
+**화이팅! 개발 실력을 기르는 좋은 기회입니다! 🚀**
