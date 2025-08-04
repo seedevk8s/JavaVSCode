@@ -12,7 +12,7 @@
 
 ### 1. 패키지 구조
 ```
-testlab2/
+totallab/
 ├── model/          # 도메인 모델 클래스들
 ├── service/        # 비즈니스 로직 클래스
 ├── exception/      # 예외 처리 클래스들
@@ -23,7 +23,7 @@ testlab2/
 
 ## 🏗️ 필수 구현 클래스 및 기능
 
-### A. 모델 클래스 (testlab2.model 패키지)
+### A. 모델 클래스 (totallab.model 패키지)
 
 #### 1. Person 추상 클래스
 - **필드**: id(String), name(String), email(String)
@@ -79,7 +79,7 @@ testlab2/
 
 ---
 
-### B. 예외 처리 클래스 (testlab2.exception 패키지)
+### B. 예외 처리 클래스 (totallab.exception 패키지)
 
 #### 1. ShopException 클래스
 - **상속**: Exception 클래스 상속
@@ -92,7 +92,7 @@ testlab2/
 
 ---
 
-### C. 서비스 클래스 (testlab2.service 패키지)
+### C. 서비스 클래스 (totallab.service 패키지)
 
 #### ShoppingMall 클래스
 **필드**: 
@@ -134,7 +134,7 @@ testlab2/
 
 ---
 
-### D. 메인 클래스 (testlab2.main 패키지)
+### D. 메인 클래스 (totallab.main 패키지)
 
 #### ShoppingMallSystem 클래스
 - **필드**: `ShoppingMall mall`, `Scanner scanner`
