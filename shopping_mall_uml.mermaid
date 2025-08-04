@@ -1,0 +1,186 @@
+classDiagram
+    %% 예외 클래스들
+    class ShopException {
+        <<exception>>
+        +ShopException(message: String)
+    }
+    
+    class CustomerNotFoundException {
+        <<exception>>
+        +CustomerNotFoundException(message: String)
+    }
+    
+    class ProductNotFoundException {
+        <<exception>>
+        +ProductNotFoundException(message: String)
+    }
+    
+    class InsufficientStockException {
+        <<exception>>
+        +InsufficientStockException(message: String)
+    }
+    
+    %% 추상 클래스
+    class Person {
+        <<abstract>>
+        #id: String
+        #name: String
+        #email: String
+        +Person(id: String, name: String, email: String)
+        +getId(): String
+        +getName(): String
+        +getEmail(): String
+        +getUserType(): String*
+        +toString(): String
+    }
+    
+    %% 모델 클래스들
+    class Customer {
+        -joinDate: LocalDateTime
+        +Customer(id: String, name: String, email: String)
+        +getUserType(): String
+        +getJoinDate(): LocalDateTime
+        +toString(): String
+    }
+    
+    class Manager {
+        -department: String
+        -employeeId: int
+        +Manager(id: String, name: String, email: String, department: String, employeeId: int)
+        +getUserType(): String
+        +getDepartment(): String
+        +getEmployeeId(): int
+        +toString(): String
+    }
+    
+    class Product {
+        -productId: String
+        -name: String
+        -price: int
+        -stock: int
+        -category: String
+        -rating: double
+        -reviewCount: int
+        +Product(productId: String, name: String, price: int, stock: int, category: String)
+        +reduceStock(quantity: int): void
+        +addStock(quantity: int): void
+        +addReview(newRating: double): void
+        +isInStock(): boolean
+        +isLowStock(): boolean
+        +getProductId(): String
+        +getName(): String
+        +getPrice(): int
+        +getStock(): int
+        +getCategory(): String
+        +getRating(): double
+        +getReviewCount(): int
+        +toString(): String
+    }
+    
+    class CartItem {
+        -product: Product
+        -quantity: int
+        +CartItem(product: Product, quantity: int)
+        +setQuantity(quantity: int): void
+        +addQuantity(amount: int): void
+        +getTotalPrice(): int
+        +getProduct(): Product
+        +getQuantity(): int
+        +toString(): String
+    }
+    
+    class Order {
+        -orderId: String
+        -customer: Customer
+        -items: ArrayList~CartItem~
+        -orderDate: LocalDateTime
+        -totalAmount: int
+        -status: String
+        +Order(orderId: String, customer: Customer, items: ArrayList~CartItem~)
+        -calculateTotalAmount(): void
+        +updateStatus(newStatus: String): void
+        +getOrderId(): String
+        +getCustomer(): Customer
+        +getItems(): ArrayList~CartItem~
+        +getOrderDate(): LocalDateTime
+        +getTotalAmount(): int
+        +getStatus(): String
+        +toString(): String
+    }
+    
+    %% 서비스 클래스
+    class ShoppingMall {
+        -products: HashMap~String,Product~
+        -customers: HashMap~String,Customer~
+        -managers: HashMap~String,Manager~
+        -orders: ArrayList~Order~
+        -carts: HashMap~String,ArrayList~CartItem~~
+        -mallName: String
+        -orderCounter: int
+        +ShoppingMall(mallName: String)
+        +addProduct(productId: String, name: String, price: int, stock: int, category: String): void
+        +searchProductsByName(name: String): ArrayList~Product~
+        +getProductsByCategory(category: String): ArrayList~Product~
+        +getLowStockProducts(): ArrayList~Product~
+        +addCustomer(id: String, name: String, email: String): void
+        +addManager(id: String, name: String, email: String, department: String, employeeId: int): void
+        +addToCart(customerId: String, productId: String, quantity: int): void
+        +displayCart(customerId: String): void
+        +placeOrder(customerId: String): void
+        +displayAllProducts(): void
+        +displayAvailableProducts(): void
+        +displayCustomerOrders(customerId: String): void
+        +displayMallStatistics(): void
+    }
+    
+    %% 메인 클래스
+    class ShoppingMallSystem {
+        -mall: ShoppingMall
+        -scanner: Scanner
+        +ShoppingMallSystem()
+        -initializeData(): void
+        +run(): void
+        -displayMainMenu(): void
+        -handleProductManagement(): void
+        -handleCustomerManagement(): void
+        -handleCartManagement(): void
+        -handleOrderManagement(): void
+        -addNewProduct(): void
+        -searchProducts(): void
+        -searchByCategory(): void
+        -displayLowStockProducts(): void
+        -displaySearchResults(): void
+        -addNewCustomer(): void
+        -addNewManager(): void
+        -viewCustomerOrders(): void
+        -addToCart(): void
+        -viewCart(): void
+        -placeOrder(): void
+        +main(args: String[]): void
+    }
+    
+    %% 상속 관계
+    Person <|-- Customer
+    Person <|-- Manager
+    ShopException <|-- CustomerNotFoundException
+    ShopException <|-- ProductNotFoundException
+    ShopException <|-- InsufficientStockException
+    
+    %% 조합/집약 관계
+    ShoppingMall "1" *-- "0..*" Product : manages
+    ShoppingMall "1" *-- "0..*" Customer : manages
+    ShoppingMall "1" *-- "0..*" Manager : manages
+    ShoppingMall "1" *-- "0..*" Order : manages
+    ShoppingMall "1" *-- "0..*" CartItem : manages carts
+    
+    CartItem "1" *-- "1" Product : contains
+    Order "1" *-- "1" Customer : belongs to
+    Order "1" *-- "1..*" CartItem : contains
+    
+    ShoppingMallSystem "1" *-- "1" ShoppingMall : uses
+    
+    %% 의존 관계 (예외 던지기)
+    Product ..> InsufficientStockException : throws
+    ShoppingMall ..> CustomerNotFoundException : throws
+    ShoppingMall ..> ProductNotFoundException : throws
+    ShoppingMall ..> ShopException : throws
