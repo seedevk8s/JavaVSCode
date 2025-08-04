@@ -30,7 +30,7 @@
 
 ### 📦 패키지 구조
 ```
-testlab2/
+totallab/
 ├── model/          # 도메인 모델 클래스들
 ├── service/        # 비즈니스 로직 클래스
 ├── exception/      # 예외 처리 클래스들
@@ -41,7 +41,7 @@ testlab2/
 
 ## 📋 상세 구현 요구사항
 
-### A. 모델 클래스 (testlab2.model 패키지)
+### A. 모델 클래스 (totallab.model 패키지)
 
 #### 1. Person 추상 클래스 ⭐⭐⭐
 ```java
@@ -138,7 +138,7 @@ public class Order {
 
 ---
 
-### B. 예외 처리 클래스 (testlab2.exception 패키지) ⭐⭐
+### B. 예외 처리 클래스 (totallab.exception 패키지) ⭐⭐
 
 #### 계층적 예외 구조
 ```java
@@ -159,7 +159,7 @@ public class ShopException extends Exception {
 
 ---
 
-### C. 서비스 클래스 (testlab2.service 패키지) ⭐⭐⭐⭐
+### C. 서비스 클래스 (totallab.service 패키지) ⭐⭐⭐⭐
 
 #### ShoppingMall 클래스 (핵심 비즈니스 로직)
 ```java
@@ -224,7 +224,7 @@ void displayMallStatistics()
 
 ---
 
-### D. UI 클래스 (testlab2.main 패키지) ⭐⭐⭐
+### D. UI 클래스 (totallab.main 패키지) ⭐⭐⭐
 
 #### ShoppingMallSystem 클래스
 **메뉴 구조:**
@@ -435,7 +435,7 @@ public static void quickTest() {
 
 ## 실행 방법
 1. 컴파일: javac -d . *.java
-2. 실행: java testlab2.main.ShoppingMallSystem
+2. 실행: java totallab.main.ShoppingMallSystem
 ```
 
 ---
