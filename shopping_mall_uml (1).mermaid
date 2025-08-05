@@ -1,0 +1,90 @@
+classDiagram
+    %% 핵심 예외 클래스
+    class ShopException {
+        <<exception>>
+        +ShopException(message: String)
+    }
+    
+    %% 추상 클래스
+    class Person {
+        <<abstract>>
+        #id: String
+        #name: String
+        #email: String
+        +getUserType(): String*
+    }
+    
+    %% 핵심 모델 클래스들
+    class Customer {
+        -joinDate: LocalDateTime
+        +Customer(id: String, name: String, email: String)
+        +getUserType(): String
+    }
+    
+    class Manager {
+        -department: String
+        -employeeId: int
+        +Manager(id: String, name: String, email: String, department: String, employeeId: int)
+        +getUserType(): String
+    }
+    
+    class Product {
+        -productId: String
+        -name: String
+        -price: int
+        -stock: int
+        -category: String
+        +Product(productId: String, name: String, price: int, stock: int, category: String)
+        +reduceStock(quantity: int): void
+        +isInStock(): boolean
+    }
+    
+    class CartItem {
+        -product: Product
+        -quantity: int
+        +CartItem(product: Product, quantity: int)
+        +getTotalPrice(): int
+    }
+    
+    class Order {
+        -orderId: String
+        -customer: Customer
+        -items: ArrayList~CartItem~
+        -totalAmount: int
+        +Order(orderId: String, customer: Customer, items: ArrayList~CartItem~)
+    }
+    
+    %% 핵심 서비스 클래스
+    class ShoppingMall {
+        -products: HashMap~String,Product~
+        -customers: HashMap~String,Customer~
+        -orders: ArrayList~Order~
+        -carts: HashMap~String,ArrayList~CartItem~~
+        +addProduct(): void
+        +addCustomer(): void
+        +addToCart(): void
+        +placeOrder(): void
+        +displayProducts(): void
+    }
+    
+    %% UI 클래스
+    class ShoppingMallSystem {
+        -mall: ShoppingMall
+        +run(): void
+        +main(args: String[]): void
+    }
+    
+    %% 상속 관계
+    Person <|-- Customer : extends
+    Person <|-- Manager : extends
+    
+    %% 핵심 관계
+    ShoppingMall "1" --> "*" Product : manages
+    ShoppingMall "1" --> "*" Customer : manages
+    ShoppingMall "1" --> "*" Order : manages
+    
+    CartItem --> Product : contains
+    Order --> Customer : belongs to
+    Order "1" --> "*" CartItem : contains
+    
+    ShoppingMallSystem --> ShoppingMall : uses
