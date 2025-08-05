@@ -1,0 +1,162 @@
+classDiagram
+    %% 예외 클래스들 (요구사항: 계층적 예외 구조)
+    class ShopException {
+        <<exception>>
+        +ShopException(message: String)
+    }
+    
+    class CustomerNotFoundException {
+        <<exception>>
+        +CustomerNotFoundException(message: String)
+    }
+    
+    class ProductNotFoundException {
+        <<exception>>
+        +ProductNotFoundException(message: String)
+    }
+    
+    class InsufficientStockException {
+        <<exception>>
+        +InsufficientStockException(message: String)
+    }
+    
+    %% 추상 클래스 (요구사항: Customer와 Manager의 공통 부모)
+    class Person {
+        <<abstract>>
+        #id: String
+        #name: String
+        #email: String
+        +Person(id: String, name: String, email: String)
+        +getId(): String
+        +getName(): String
+        +getEmail(): String
+        +getUserType(): String*
+        +toString(): String
+    }
+    
+    %% 핵심 모델 클래스들
+    class Customer {
+        -joinDate: LocalDateTime
+        +Customer(id: String, name: String, email: String)
+        +getUserType(): String
+        +getJoinDate(): LocalDateTime
+        +toString(): String
+    }
+    
+    class Manager {
+        -department: String
+        -employeeId: int
+        +Manager(id: String, name: String, email: String, department: String, employeeId: int)
+        +getUserType(): String
+        +getDepartment(): String
+        +getEmployeeId(): int
+        +toString(): String
+    }
+    
+    class Product {
+        -productId: String
+        -name: String
+        -price: int
+        -stock: int
+        -category: String
+        -rating: double
+        -reviewCount: int
+        +Product(productId: String, name: String, price: int, stock: int, category: String)
+        +reduceStock(quantity: int): void
+        +addStock(quantity: int): void
+        +addReview(newRating: double): void
+        +isInStock(): boolean
+        +isLowStock(): boolean
+        +getters(): 각종타입
+        +toString(): String
+    }
+    
+    class CartItem {
+        -product: Product
+        -quantity: int
+        +CartItem(product: Product, quantity: int)
+        +setQuantity(quantity: int): void
+        +addQuantity(amount: int): void
+        +getTotalPrice(): int
+        +getProduct(): Product
+        +getQuantity(): int
+        +toString(): String
+    }
+    
+    class Order {
+        -orderId: String
+        -customer: Customer
+        -items: ArrayList~CartItem~
+        -orderDate: LocalDateTime
+        -totalAmount: int
+        -status: String
+        +Order(orderId: String, customer: Customer, items: ArrayList~CartItem~)
+        -calculateTotalAmount(): void
+        +updateStatus(newStatus: String): void
+        +getters(): 각종타입
+        +toString(): String
+    }
+    
+    %% 핵심 서비스 클래스 (요구사항: 비즈니스 로직)
+    class ShoppingMall {
+        -products: HashMap~String,Product~
+        -customers: HashMap~String,Customer~
+        -managers: HashMap~String,Manager~
+        -orders: ArrayList~Order~
+        -carts: HashMap~String,ArrayList~CartItem~~
+        -mallName: String
+        -orderCounter: int
+        +ShoppingMall(mallName: String)
+        +addProduct(): void
+        +searchProductsByName(): ArrayList~Product~
+        +getProductsByCategory(): ArrayList~Product~
+        +getLowStockProducts(): ArrayList~Product~
+        +addCustomer(): void
+        +addManager(): void
+        +addToCart(): void
+        +displayCart(): void
+        +placeOrder(): void
+        +displayAllProducts(): void
+        +displayAvailableProducts(): void
+        +displayCustomerOrders(): void
+        +displayMallStatistics(): void
+    }
+    
+    %% UI 클래스 (요구사항: 메뉴 시스템)
+    class ShoppingMallSystem {
+        -mall: ShoppingMall
+        -scanner: Scanner
+        +ShoppingMallSystem()
+        -initializeData(): void
+        +run(): void
+        -displayMainMenu(): void
+        -handleProductManagement(): void
+        -handleCustomerManagement(): void
+        -handleCartManagement(): void
+        -handleOrderManagement(): void
+        +main(args: String[]): void
+    }
+    
+    %% 상속 관계 (요구사항: 다형성 구현)
+    Person <|-- Customer : extends
+    Person <|-- Manager : extends
+    ShopException <|-- CustomerNotFoundException : extends
+    ShopException <|-- ProductNotFoundException : extends
+    ShopException <|-- InsufficientStockException : extends
+    
+    %% 핵심 관계 (요구사항: 컬렉션 활용)
+    ShoppingMall "1" --> "*" Product : manages
+    ShoppingMall "1" --> "*" Customer : manages
+    ShoppingMall "1" --> "*" Manager : manages
+    ShoppingMall "1" --> "*" Order : manages
+    
+    CartItem --> Product : contains
+    Order --> Customer : belongs to
+    Order "1" --> "*" CartItem : contains
+    
+    ShoppingMallSystem --> ShoppingMall : uses
+    
+    %% 비즈니스 룰 노트
+    note for Product "재고 부족 기준: 5개 이하\n(요구사항 명시)"
+    note for ShoppingMall "핵심 기능:\n- 상품 관리\n- 고객 관리\n- 장바구니 관리\n- 주문 처리\n- 통계 정보"
+    note for Person "추상 클래스로\n다형성 구현"
